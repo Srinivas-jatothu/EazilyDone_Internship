@@ -21,7 +21,7 @@
             android:screenOrientation="landscape"
             tools:ignore="DiscouragedApi"/>
         <activity
-            android:name=".DiscussionRoom"
+            android:name=".QuizActivity2"
             android:exported="true"
             android:screenOrientation="landscape"
             tools:ignore="DiscouragedApi">
@@ -47,7 +47,7 @@
             android:screenOrientation="landscape"
             tools:ignore="DiscouragedApi"/>
         <activity
-            android:name=".QuizActivity2"
+            android:name=".DiscussionRoom"
             android:exported="false"
             android:screenOrientation="landscape"
             tools:ignore="DiscouragedApi"/>
@@ -83,6 +83,11 @@
             tools:ignore="DiscouragedApi"/>
         <activity
             android:name=".ThirdActivity"
+            android:exported="false"
+            android:screenOrientation="landscape"
+            tools:ignore="DiscouragedApi"/>
+
+        <activity android:name=".LeaderBoard"
             android:exported="false"
             android:screenOrientation="landscape"
             tools:ignore="DiscouragedApi"/>

@@ -25,7 +25,6 @@ public class DiscussionRoom extends AppCompatActivity {
         bankEmployeeDialogue = findViewById(R.id.bankEmployeeDialogue);
         customerDialogue = findViewById(R.id.customerDialogue);
         nextButton = findViewById(R.id.nextButton);
-        manager = findViewById(R.id.manager);
 
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override

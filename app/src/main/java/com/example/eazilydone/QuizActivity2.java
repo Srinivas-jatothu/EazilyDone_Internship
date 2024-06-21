@@ -7,6 +7,7 @@ import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,58 +27,8 @@ public class QuizActivity2 extends AppCompatActivity {
     private CountDownTimer countDownTimer;
     private long timeLeftInMillis = 15000; // 15 seconds
     private int currentQuestionIndex = 0;
-    // Define correct answers
-    //private int[] correctAnswers = {1, 0, 0 ,0 ,0 }; // Index of correct option for each question (0-indexed)
-
     private boolean optionSelected = false;
     private boolean isEnglish = true; // Default language is English
-
-    // Define your questions and options here
-//    private String[] questions = {
-//            "What is the main purpose of a budget?",
-//            "What is the difference between stocks and bonds?",
-//            "What does ROI stand for?",
-//            "What is the role of a central bank in an economy?",
-//            "What is inflation?",
-//            "What is the purpose of diversification in investment?",
-//            "What is GDP?",
-//            "What is a mutual fund?",
-//            "What is the function of a credit score?",
-//            "What is the time value of money?",
-//            "What is the difference between debit and credit cards?",
-//            "What is a balance sheet?",
-//            "What is the meaning of IPO?",
-//            "What is asset allocation?",
-//            "What is the difference between a traditional and Roth IRA?",
-//            "What is a bull market?",
-//            "What is a bear market?",
-//            "What is compound interest?",
-//            "What is a 401(k) retirement plan?",
-//            "What is the significance of the Federal Reserve?"
-//    };
-//
-//    private String[][] options = {
-//            {"To plan and manage spending", "To track income", "To calculate taxes", "To invest in stocks"},
-//            {"Stocks represent ownership, while bonds are debt securities", "Stocks have higher risk than bonds", "Stocks are only traded on weekdays", "Bonds are more liquid than stocks"},
-//            {"Return On Investment", "Revenue On Income", "Ratio Of Investment", "Risk Of Investment"},
-//            {"To regulate interest rates and monetary policy", "To supervise commercial banks", "To set fiscal policy", "To manage public debt"},
-//            {"A decrease in the purchasing power of money", "An increase in the value of assets", "A rise in interest rates", "A decrease in unemployment"},
-//            {"To spread risk across different assets", "To focus investments in one sector", "To maximize returns", "To minimize taxes"},
-//            {"Gross Domestic Product", "Gross Domestic Price", "General Development Process", "Government Development Policy"},
-//            {"A pool of funds managed by professionals", "A type of stock exchange", "A government agency", "A financial regulation"},
-//            {"To assess creditworthiness for borrowing", "To determine eligibility for insurance", "To evaluate investment opportunities", "To calculate taxes"},
-//            {"The principle that a dollar today is worth more than a dollar in the future", "The concept of saving money over time", "The idea that money grows through investment", "The interest rate on loans"},
-//            {"Debit cards deduct funds directly from a checking account, while credit cards allow borrowing up to a certain limit", "Debit cards are used for online transactions, while credit cards are used in physical stores", "Debit cards offer rewards, while credit cards do not", "Debit cards have higher interest rates than credit cards"},
-//            {"A financial statement that shows a company's assets, liabilities, and equity at a specific point in time", "A list of personal expenses and income", "A record of stock market transactions", "A government budget report"},
-//            {"Initial Public Offering", "Investment Portfolio Option", "Income Profit Opportunity", "Interest Payment Obligation"},
-//            {"Determining the mix of asset classes in an investment portfolio", "The process of buying and selling stocks", "Calculating the value of company shares", "Managing personal savings"},
-//            {"Traditional IRA contributions may be tax-deductible, while Roth IRA contributions are not", "Traditional IRA earnings are tax-deferred, while Roth IRA earnings are tax-free", "Traditional IRA withdrawals are penalty-free at any age, while Roth IRA withdrawals are subject to penalties", "Traditional IRA contributions have no income limits, while Roth IRA contributions do"},
-//            {"A market characterized by rising stock prices and investor optimism", "A market characterized by falling stock prices and investor pessimism", "A market with no significant changes in stock prices", "A market with high volatility"},
-//            {"A market characterized by falling stock prices and investor pessimism", "A market characterized by rising stock prices and investor optimism", "A market with no significant changes in stock prices", "A market with high volatility"},
-//            {"Interest calculated on the initial principal and also on the accumulated interest from previous periods", "Interest paid only on the initial principal", "Interest compounded monthly", "Interest paid at maturity"},
-//            {"A retirement savings plan sponsored by an employer that allows employees to save and invest part of their paycheck before taxes", "A government program providing financial assistance to retirees", "A type of individual retirement account for self-employed individuals", "A high-yield savings account"},
-//            {"It regulates the nation's monetary policy, supervises and regulates banks, and provides financial services such as clearing checks and managing the nation's money supply."}
-//    };
 
 
     private String[] questions = {
@@ -176,10 +127,6 @@ public class QuizActivity2 extends AppCompatActivity {
 
     private int[] correctAnswers = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 
-//    private String[] selectedQuestions = new String[5];
-//    private String[][] selectedOptions = new String[5][4];
-//    private int[] selectedCorrectAnswers = new int[5];
-
     private List<String> selectedQuestions;
     private List<String[]> selectedOptions;
     private List<Integer> selectedCorrectAnswers;
@@ -187,6 +134,8 @@ public class QuizActivity2 extends AppCompatActivity {
     private List<String> selectedRomanisedSinhalaQuestions;
     private List<String[]> selectedRomanisedSinhalaOptions;
 
+    private int cashAmount = 0; // Initial cash amount
+    private TextView cashAmountEditText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -199,7 +148,11 @@ public class QuizActivity2 extends AppCompatActivity {
         option2 = findViewById(R.id.option2);
         option3 = findViewById(R.id.option3);
         option4 = findViewById(R.id.option4);
-        next = findViewById(R.id.next);
+        next = findViewById(R.id.nextquestionbutton);
+        cashAmountEditText = findViewById(R.id.cashAmount);
+        // Initialize cash amount display
+        updateCashAmountDisplay();
+
 
 
         //randomize questions
@@ -270,23 +223,12 @@ public class QuizActivity2 extends AppCompatActivity {
             }
         });
 
-
-//        Handler h=new Handler();
-//        Runnable r=new Runnable() {
-//            @Override
-//            public void run() {
-//                Log.d("TAG", "run: ");
-//            }
-//        };
-//        h.post(r);
-
-
         Handler h=new Handler();
         Runnable r= new Runnable() {
             @Override
             public void run() {
                 //print timeLeftInMillis
-                Log.d("TAG", "run: "+timeLeftInMillis);
+                Log.d("TAG", "run in runnable: "+timeLeftInMillis);
 
 
                 if ( timeLeftInMillis==0){
@@ -312,12 +254,16 @@ public class QuizActivity2 extends AppCompatActivity {
 
                     // Set onClickListener for the button inside LinearLayout to move to QuizActivity3
                     Button nextButton = resultLayout.findViewById(R.id.nextResult);
+
+
                     nextButton.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
                             // Hide the result layout
                             resultLayout.setVisibility(View.GONE);
                             // Navigate to QuizActivity3
+                            //log entering to QuizActivity3
+                            Log.d("TAG", "run: entering to QuizActivity3 because of time out");
                             Intent intent = new Intent(QuizActivity2.this, QuizActivity3.class);
                             startActivity(intent);
                             finish(); // Optional, to close QuizActivity2
@@ -335,16 +281,11 @@ public class QuizActivity2 extends AppCompatActivity {
         };
         h.post(r);
 
-
-
-
-
-//        new Handler(new Runnable() {
-//            @Override
-//
-//        });
     }
 
+    private void updateCashAmountDisplay() {
+        cashAmountEditText.setText(String.valueOf(cashAmount));
+    }
     private void startTimer() {
         timeLeftInMillis = 15000; // Reset time left to initial value
 
@@ -370,13 +311,11 @@ public class QuizActivity2 extends AppCompatActivity {
         }.start();
     }
 
-
     private void updateCountdownText() {
         int seconds = (int) (timeLeftInMillis / 1000) % 60;
         String timeLeftFormatted = String.format("%02d:%02d", seconds / 60, seconds % 60);
         timerTextView.setText(timeLeftFormatted);
     }
-
 
     private void resetOptions(Button option) {
         // Reset background color
@@ -390,8 +329,6 @@ public class QuizActivity2 extends AppCompatActivity {
         option.setTextSize(TypedValue.COMPLEX_UNIT_SP, 10); // Initial text size
     }
 
-
-
     @Override
     protected void onDestroy() {
         super.onDestroy();
@@ -399,41 +336,6 @@ public class QuizActivity2 extends AppCompatActivity {
             countDownTimer.cancel();
         }
     }
-
-
-//    private void displayQuestion() {
-//        // Reset background color, selected state, font style, and size of all options
-//        resetOptions(option1);
-//        resetOptions(option2);
-//        resetOptions(option3);
-//        resetOptions(option4);
-//
-//        // Check if there are more questions
-//        if (currentQuestionIndex < questions.length) {
-//            // Display the current question and options
-//            questionTextView.setText(questions[currentQuestionIndex]);
-//            option1.setText(options[currentQuestionIndex][0]);
-//            option2.setText(options[currentQuestionIndex][1]);
-//            option3.setText(options[currentQuestionIndex][2]);
-//            option4.setText(options[currentQuestionIndex][3]);
-//
-//            // Enable all options
-//            option1.setEnabled(true);
-//            option2.setEnabled(true);
-//            option3.setEnabled(true);
-//            option4.setEnabled(true);
-//
-//            // Start or reset the timer
-//            startTimer();
-//        } else {
-//            // No more questions, navigate to QuizActivity3
-//            Intent intent = new Intent(QuizActivity2.this, QuizActivity3.class);
-//            startActivity(intent);
-//            finish(); // Optional, to close QuizActivity2
-//        }
-//    }
-
-
 
     private void displayQuestion() {
         // Reset background color, selected state, font style, and size of all options
@@ -443,49 +345,22 @@ public class QuizActivity2 extends AppCompatActivity {
         resetOptions(option4);
 
         if (currentQuestionIndex < selectedQuestions.size()) {
-
-
-
             updateQuestionText();
-
-//            if (isEnglish) {
-//                questionTextView.setText(selectedQuestions.get(currentQuestionIndex));
-//                option1.setText(selectedOptions.get(currentQuestionIndex)[0]);
-//                option2.setText(selectedOptions.get(currentQuestionIndex)[1]);
-//                option3.setText(selectedOptions.get(currentQuestionIndex)[2]);
-//                option4.setText(selectedOptions.get(currentQuestionIndex)[3]);
-//            } else {
-//                questionTextView.setText(selectedRomanisedSinhalaQuestions.get(currentQuestionIndex));
-//                option1.setText(selectedRomanisedSinhalaOptions.get(currentQuestionIndex)[0]);
-//                option2.setText(selectedRomanisedSinhalaOptions.get(currentQuestionIndex)[1]);
-//                option3.setText(selectedRomanisedSinhalaOptions.get(currentQuestionIndex)[2]);
-//                option4.setText(selectedRomanisedSinhalaOptions.get(currentQuestionIndex)[3]);
-//            }
-
-
-//            // Display the current question and options
-//            questionTextView.setText(selectedQuestions.get(currentQuestionIndex));
-//            option1.setText(selectedOptions.get(currentQuestionIndex)[0]);
-//            option2.setText(selectedOptions.get(currentQuestionIndex)[1]);
-//            option3.setText(selectedOptions.get(currentQuestionIndex)[2]);
-//            option4.setText(selectedOptions.get(currentQuestionIndex)[3]);
-
-
-
-
             // Reset optionSelected flag
             optionSelected = false;
-
             // Start or reset the timer
             startTimer();
         } else {
+            //print cash amount earned upto know
+            Log.d("TAG", "displayQuestion: Cash amount earned upto know: "+cashAmount);
             // No more questions, navigate to QuizActivity3
             Intent intent = new Intent(QuizActivity2.this, QuizActivity3.class);
+            //pass the cash amount to the QuizActivity3
+            intent.putExtra("cashAmount", cashAmount);
             startActivity(intent);
             finish(); // Optional, to close QuizActivity2
         }
     }
-
 
     private void updateQuestionText() {
         if (currentQuestionIndex < selectedQuestions.size()) {
@@ -505,51 +380,6 @@ public class QuizActivity2 extends AppCompatActivity {
             }
         }
     }
-
-
-
-//    private void handleOptionSelection(Button option) {
-//        // Reset all options to enabled state
-//        option1.setEnabled(true);
-//        option2.setEnabled(true);
-//        option3.setEnabled(true);
-//        option4.setEnabled(true);
-//
-//        // Reset font style and size of all options
-//        option1.setTypeface(null, Typeface.NORMAL);
-//        option2.setTypeface(null, Typeface.NORMAL);
-//        option3.setTypeface(null, Typeface.NORMAL);
-//        option4.setTypeface(null, Typeface.NORMAL);
-//        option1.setTextSize(TypedValue.COMPLEX_UNIT_SP, 10); // Initial text size
-//        option2.setTextSize(TypedValue.COMPLEX_UNIT_SP, 10);
-//        option3.setTextSize(TypedValue.COMPLEX_UNIT_SP, 10);
-//        option4.setTextSize(TypedValue.COMPLEX_UNIT_SP, 10);
-//
-//        // Reset background color of all options
-//        option1.setBackgroundColor(ContextCompat.getColor(this, android.R.color.transparent));
-//        option2.setBackgroundColor(ContextCompat.getColor(this, android.R.color.transparent));
-//        option3.setBackgroundColor(ContextCompat.getColor(this, android.R.color.transparent));
-//        option4.setBackgroundColor(ContextCompat.getColor(this, android.R.color.transparent));
-//
-//        // Reset selected state of all options
-//        option1.setSelected(false);
-//        option2.setSelected(false);
-//        option3.setSelected(false);
-//        option4.setSelected(false);
-//
-//        // Set font style and size for selected option
-//        option.setTypeface(null, Typeface.BOLD_ITALIC);
-//        option.setTextSize(TypedValue.COMPLEX_UNIT_SP, 12); // Increased text size by 2sp
-//
-//        // Highlight selected option
-//        option.setSelected(true);
-//
-//        // Set background color for selected option
-//        option.setBackgroundColor(ContextCompat.getColor(this, R.color.transparent));
-//
-//        // Handle selected option logic
-//        // You can implement your logic here
-//    }
 
     private void handleOptionSelection(Button option) {
 
@@ -597,12 +427,6 @@ public class QuizActivity2 extends AppCompatActivity {
 
     }
 
-
-
-
-
-
-
     private void moveToNextQuestion() {
         optionSelected = false;
         //startTimer();
@@ -629,13 +453,22 @@ public class QuizActivity2 extends AppCompatActivity {
                 if (isCorrect) {
                     // Set text for the result TextView
                     TextView resultTextView = findViewById(R.id.resultTextView);
-                    resultTextView.setText("Correct Answer!");
+                    resultTextView.setText("Correct Answer!\nYou have earned Rs. 1000!");
+
+
                     Toast.makeText(getApplicationContext(), "Correct Answer!", Toast.LENGTH_SHORT).show();
+                    cashAmount += 1000; // Increase the cash amount by 1000 for correct answer
+                    //print cash amount
+                    Log.d("TAG", "Cash amount earned upto know: "+cashAmount);
                 }
                 else {
+                    //print cash amount
+                    Log.d("TAG", "Cash amount earned upto know: "+cashAmount);
                     // Set text for the result TextView
                     TextView resultTextView = findViewById(R.id.resultTextView);
                     resultTextView.setText("Wrong Answer!");
+                    //Stop the timer
+                    countDownTimer.cancel();
 
                     // Hide all views except for LinearLayout
                     questionTextView.setVisibility(View.GONE);
@@ -649,6 +482,9 @@ public class QuizActivity2 extends AppCompatActivity {
                     LinearLayout resultLayout = findViewById(R.id.result);
                     resultLayout.setVisibility(View.VISIBLE);
 
+                    //print entering to QuizActivity3
+                    Log.d("TAG", "moveToNextQuestion: entering to QuizActivity3 because of wrong answer");
+
                     // Set onClickListener for the button inside LinearLayout to move to QuizActivity3
                     Button nextButton = resultLayout.findViewById(R.id.nextResult);
                     nextButton.setOnClickListener(new View.OnClickListener() {
@@ -658,6 +494,8 @@ public class QuizActivity2 extends AppCompatActivity {
                             resultLayout.setVisibility(View.GONE);
                             // Navigate to QuizActivity3
                             Intent intent = new Intent(QuizActivity2.this, QuizActivity3.class);
+                            //pass the cash amount to the QuizActivity3
+                            intent.putExtra("cashAmount", cashAmount);
                             startActivity(intent);
                             finish(); // Optional, to close QuizActivity2
                         }
@@ -708,34 +546,17 @@ public class QuizActivity2 extends AppCompatActivity {
             }
         }
         else {
+            //print entering to QuizActivity3
+            Log.d("TAG", "moveToNextQuestion: entering to QuizActivity3");
             // No more questions, navigate to QuizActivity3
             Intent intent = new Intent(QuizActivity2.this, QuizActivity3.class);
             startActivity(intent);
             finish(); // Optional, to close QuizActivity2
         }
+        // Display the updated cash amount
+        updateCashAmountDisplay();
+
     }
-
-
-
-
-//    private void selectRandomQuestions() {
-//        List<Integer> indices = new ArrayList<>();
-//        for (int i = 0; i < questions.length; i++) {
-//            indices.add(i);
-//        }
-//        Collections.shuffle(indices);
-//
-//        selectedQuestions = new ArrayList<>();
-//        selectedOptions = new ArrayList<>();
-//        selectedCorrectAnswers = new ArrayList<>();
-//
-//        for (int i = 0; i < 5; i++) {
-//            selectedQuestions.add(questions[indices.get(i)]);
-//            selectedOptions.add(options[indices.get(i)]);
-//            selectedCorrectAnswers.add(correctAnswers[indices.get(i)]);
-//        }
-//    }
-
 
     private void selectRandomQuestions() {
         List<Integer> indices = new ArrayList<>();
@@ -757,10 +578,4 @@ public class QuizActivity2 extends AppCompatActivity {
             selectedRomanisedSinhalaOptions.add(romanisedSinhalaOptions[index]);
         }
     }
-
-
-
-
-
-
 }

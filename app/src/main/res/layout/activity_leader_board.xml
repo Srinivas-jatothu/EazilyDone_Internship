@@ -2,7 +2,6 @@
 android:id="@+id/main"
 xmlns:tools="http://schemas.android.com/tools"
 android:layout_width="match_parent"
-android:background="@drawable/copped_lb_img"
 android:layout_height="match_parent"
 tools:context=".MainActivity">
 
@@ -18,18 +17,20 @@ tools:context=".MainActivity">
 
     <TextView
         android:id="@+id/yourRank"
-        android:layout_width="205dp"
-        android:layout_height="67dp"
+        android:background="@color/green"
+        android:layout_width="364dp"
+        android:layout_height="229dp"
         android:layout_below="@+id/recyclerView"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="232dp"
-        android:layout_marginTop="25dp"
-        android:layout_marginEnd="246dp"
+        android:layout_marginStart="243dp"
+        android:layout_marginTop="-254dp"
+        android:layout_marginEnd="284dp"
         android:text="TextView" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
+        android:background="@color/light_blue"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/tvTitle"
