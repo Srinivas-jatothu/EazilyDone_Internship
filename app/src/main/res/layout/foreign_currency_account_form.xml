@@ -1,0 +1,115 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/light_black"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!-- Savings Account Form -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/standardCurrentAccountForm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:visibility="visible">
+
+        <!-- Account Holder Name -->
+        <TextView
+            android:id="@+id/accountHolderNameLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Account Holder Name"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/accountHolderName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:hint="Enter name"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/accountHolderNameLabel"
+            app:layout_constraintWidth_percent="1.0" />
+
+        <!-- Account Number -->
+        <TextView
+            android:id="@+id/accountNumberLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Account Number"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/accountHolderName" />
+
+        <EditText
+            android:id="@+id/accountNumber"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:hint="Enter account number"
+            android:inputType="number"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/accountNumberLabel"
+            app:layout_constraintWidth_percent="1.0" />
+
+        <!-- Initial Deposit Amount -->
+        <TextView
+            android:id="@+id/initialDepositLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Initial Deposit Amount"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/accountNumber" />
+
+        <EditText
+            android:id="@+id/initialDeposit"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:hint="Enter deposit amount"
+            android:inputType="numberDecimal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/initialDepositLabel"
+            app:layout_constraintWidth_percent="1.0" />
+
+        <!-- Checkbox -->
+        <CheckBox
+            android:id="@+id/agreementCheckbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="I agree to the terms and conditions"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/initialDeposit" />
+
+        <!-- Disclaimer Text -->
+        <TextView
+            android:id="@+id/disclaimerText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="By clicking submit, you agree to the terms and conditions."
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/agreementCheckbox" />
+
+        <!-- Submit Button -->
+        <Button
+            android:id="@+id/submitButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="Submit"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/disclaimerText" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
