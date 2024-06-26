@@ -1,14 +1,24 @@
 package com.example.eazilydone;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
-
+import android.widget.Spinner;
+import android.widget.Toast;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
 public class CreateAccountActivity extends AppCompatActivity {
 
@@ -51,142 +61,96 @@ public class CreateAccountActivity extends AppCompatActivity {
         PremiumCurrentAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Inflate the premium savings account form layout
-                LayoutInflater inflater = LayoutInflater.from(CreateAccountActivity.this);
-                View premiumSavingsAccountFormView = inflater.inflate(R.layout.premium_current_account_form, rightFrameLayout, false);
+                // Create a new instance of PremiumCurrentAccountFragment
+                PremiumCurrentAccountFragment fragment = new PremiumCurrentAccountFragment();
 
-                // Clear existing views in the rightFrameLayout
-                rightFrameLayout.removeAllViews();
-
-                // Add the inflated layout to rightFrameLayout
-                rightFrameLayout.addView(premiumSavingsAccountFormView);
+                // Replace the current content of rightFrameLayout with the fragment
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.right_frame_layout, fragment)
+                        .addToBackStack(null)  // Optional: This allows the user to navigate back to the previous fragment
+                        .commit();
             }
         });
         StandardCurrentAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Inflate the standard savings account form layout
-                LayoutInflater inflater = LayoutInflater.from(CreateAccountActivity.this);
-                View standardSavingsAccountFormView = inflater.inflate(R.layout.standard_current_account_form, rightFrameLayout, false);
+                // Create a new instance of StandardCurrentAccountFragment
+                StandardCurrentAccountFragment fragment = new StandardCurrentAccountFragment();
 
-                // Clear existing views in the rightFrameLayout
-                rightFrameLayout.removeAllViews();
-
-                // Add the inflated layout to rightFrameLayout
-                rightFrameLayout.addView(standardSavingsAccountFormView);
+                // Replace the current content of rightFrameLayout with the fragment
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.right_frame_layout, fragment)
+                        .addToBackStack(null)  // Optional: This allows the user to navigate back to the previous fragment
+                        .commit();
             }
         });
-//        PackagedCurrentAccount.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                // Inflate the packaged savings account form layout
-//                LayoutInflater inflater = LayoutInflater.from(CreateAccountActivity.this);
-//                View packagedSavingsAccountFormView = inflater.inflate(R.layout.packaged_current_account_form, rightFrameLayout, false);
-//
-//                // Clear existing views in the rightFrameLayout
-//                rightFrameLayout.removeAllViews();
-//
-//                // Add the inflated layout to rightFrameLayout
-//                rightFrameLayout.addView(packagedSavingsAccountFormView);
-//            }
-//        });
         ForeignCurrencyAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Inflate the foreign currency account form layout
-                LayoutInflater inflater = LayoutInflater.from(CreateAccountActivity.this);
-                View foreignCurrencyAccountFormView = inflater.inflate(R.layout.foreign_currency_account_form, rightFrameLayout, false);
+                // Create a new instance of ForeignCurrencyAccountFragment
+                ForeignCurrencyAccountFragment fragment = new ForeignCurrencyAccountFragment();
 
-                // Clear existing views in the rightFrameLayout
-                rightFrameLayout.removeAllViews();
-
-                // Add the inflated layout to rightFrameLayout
-                rightFrameLayout.addView(foreignCurrencyAccountFormView);
+                // Replace the current content of rightFrameLayout with the fragment
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.right_frame_layout, fragment)
+                        .addToBackStack(null)  // Optional: This allows the user to navigate back to the previous fragment
+                        .commit();
             }
         });
-
-//        SingleColumnCashBook.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                // Inflate the single column cash book form layout
-//                LayoutInflater inflater = LayoutInflater.from(CreateAccountActivity.this);
-//                View singleColumnCashBookFormView = inflater.inflate(R.layout.single_column_cash_book_form, rightFrameLayout, false);
-//
-//                // Clear existing views in the rightFrameLayout
-//                rightFrameLayout.removeAllViews();
-//
-//                // Add the inflated layout to rightFrameLayout
-//                rightFrameLayout.addView(singleColumnCashBookFormView);
-//            }
-//        });
-
-
-    //from here savings account
-
 
 
         RegularSavingAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Inflate the savings account form layout
-                LayoutInflater inflater = LayoutInflater.from(CreateAccountActivity.this);
-                View savingsAccountFormView = inflater.inflate(R.layout.regular_savings_account_form, rightFrameLayout, false);
+                // Create a new instance of RegularSavingAccountFragment
+                RegularSavingAccountFragment fragment = new RegularSavingAccountFragment();
 
-                // Clear existing views in the rightFrameLayout
-                rightFrameLayout.removeAllViews();
-
-                // Add the inflated layout to rightFrameLayout
-                rightFrameLayout.addView(savingsAccountFormView);
+                // Replace the current content of rightFrameLayout with the fragment
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.right_frame_layout, fragment)
+                        .addToBackStack(null)  // Optional: This allows the user to navigate back to the previous fragment
+                        .commit();
             }
         });
         ZeroBalanceSavingAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Inflate the savings account form layout
-                LayoutInflater inflater = LayoutInflater.from(CreateAccountActivity.this);
-                View savingsAccountFormView = inflater.inflate(R.layout.zero_balance_savings_account_form, rightFrameLayout, false);
+                // Create a new instance of ZeroBalanceSavingAccountFragment
+                ZeroBalanceSavingAccountFragment fragment = new ZeroBalanceSavingAccountFragment();
 
-                // Clear existing views in the rightFrameLayout
-                rightFrameLayout.removeAllViews();
-
-                // Add the inflated layout to rightFrameLayout
-                rightFrameLayout.addView(savingsAccountFormView);
+                // Replace the current content of rightFrameLayout with the fragment
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.right_frame_layout, fragment)
+                        .addToBackStack(null)  // Optional: This allows the user to navigate back to the previous fragment
+                        .commit();
             }
         });
         KidsSavingAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Inflate the savings account form layout
-                LayoutInflater inflater = LayoutInflater.from(CreateAccountActivity.this);
-                View savingsAccountFormView = inflater.inflate(R.layout.kids_savings_account_form, rightFrameLayout, false);
+                // Create a new instance of KidsSavingAccountFragment
+                KidsSavingAccountFragment fragment = new KidsSavingAccountFragment();
 
-                // Clear existing views in the rightFrameLayout
-                rightFrameLayout.removeAllViews();
-
-                // Add the inflated layout to rightFrameLayout
-                rightFrameLayout.addView(savingsAccountFormView);
+                // Replace the current content of rightFrameLayout with the fragment
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.right_frame_layout, fragment)
+                        .addToBackStack(null)  // Optional: This allows the user to navigate back to the previous fragment
+                        .commit();
             }
         });
         SalarySavingAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Inflate the savings account form layout
-                LayoutInflater inflater = LayoutInflater.from(CreateAccountActivity.this);
-                View savingsAccountFormView = inflater.inflate(R.layout.salary_account_form, rightFrameLayout, false);
+                // Create a new instance of SalarySavingAccountFragment
+                SalarySavingAccountFragment fragment = new SalarySavingAccountFragment();
 
-                // Clear existing views in the rightFrameLayout
-                rightFrameLayout.removeAllViews();
-
-                // Add the inflated layout to rightFrameLayout
-                rightFrameLayout.addView(savingsAccountFormView);
+                // Replace the current content of rightFrameLayout with the fragment
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.right_frame_layout, fragment)
+                        .addToBackStack(null)  // Optional: This allows the user to navigate back to the previous fragment
+                        .commit();
             }
         });
-
-
-
-
-
-
 
         buttonCurrentAccount.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -237,4 +201,718 @@ public class CreateAccountActivity extends AppCompatActivity {
         scrollViewCurrentAccounts.setVisibility(View.GONE);
         scrollViewSavingAccounts.setVisibility(View.GONE);
     }
+
+
+
+    public static class PremiumCurrentAccountFragment extends Fragment {
+
+        private EditText accountHolderName, phoneNumber, email, initialDeposit;
+        private Spinner countryCodeSpinner;
+        private Button submitButton;
+        private CheckBox agreementCheckbox;
+
+        @Nullable
+        @Override
+        public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+            View rootView = inflater.inflate(R.layout.premium_current_account_form, container, false);
+
+            // Initialize UI components
+            accountHolderName = rootView.findViewById(R.id.accountHolderName);
+            phoneNumber = rootView.findViewById(R.id.phoneNumber);
+            email = rootView.findViewById(R.id.email);
+            initialDeposit = rootView.findViewById(R.id.initialDeposit);
+            countryCodeSpinner = rootView.findViewById(R.id.countryCodeSpinner);
+            submitButton = rootView.findViewById(R.id.submitButton);
+            agreementCheckbox = rootView.findViewById(R.id.agreementCheckbox);
+
+            // Array of country codes
+            String[] countryCodes = {"+91 (India)", "+1 (USA)", "+44 (UK)", "+61 (Australia)", "+81 (Japan)",
+                    "+86 (China)", "+49 (Germany)", "+33 (France)", "+55 (Brazil)", "+27 (South Africa)", "+94 (Sri Lanka)"};
+
+            // Setting up the Spinner
+            ArrayAdapter<String> adapter = new ArrayAdapter<>(requireContext(), android.R.layout.simple_spinner_item, countryCodes);
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            countryCodeSpinner.setAdapter(adapter);
+
+            // Set OnClickListener for submitButton
+            submitButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    submitForm();
+                }
+            });
+
+            return rootView;
+        }
+
+        private void submitForm() {
+            String name = accountHolderName.getText().toString();
+            String phone = phoneNumber.getText().toString();
+            String emailText = email.getText().toString();
+            String deposit = initialDeposit.getText().toString();
+            String countryCode = countryCodeSpinner.getSelectedItem().toString();
+
+            // Log the values
+            Log.d("SalarySavingAccountFragment", "Account Holder Name: " + name);
+            Log.d("SalarySavingAccountFragment", "Phone Number: " + phone);
+            Log.d("SalarySavingAccountFragment", "Email: " + emailText);
+            Log.d("SalarySavingAccountFragment", "Initial Deposit: " + deposit);
+            Log.d("SalarySavingAccountFragment", "Country Code: " + countryCode);
+
+            // Check if the checkbox is selected
+            if (!agreementCheckbox.isChecked()) {
+                Toast.makeText(requireContext(), "Please agree to the terms and conditions", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            // Validate name: only letters (and spaces)
+            if (!name.matches("[a-zA-Z ]+")) {
+                Toast.makeText(requireContext(), "Name should only contain letters and spaces", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            // Validate phone number: exactly 10 digits
+            if (!phone.matches("\\d{10}")) {
+                Toast.makeText(requireContext(), "Phone number should be exactly 10 digits", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            // Validate email: should contain @
+            if (!emailText.contains("@")) {
+                Toast.makeText(requireContext(), "Invalid email address", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            // Perform further validation and submission logic here
+            if (name.isEmpty() || phone.isEmpty() || emailText.isEmpty() || deposit.isEmpty()) {
+                Toast.makeText(requireContext(), "Please fill in all fields", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            // Log saying form submitted successfully
+            Log.d("SalarySavingAccountFragment", "Form submitted successfully");
+
+            // Show a success message
+            Toast.makeText(requireContext(), "Form submitted successfully", Toast.LENGTH_SHORT).show();
+            // Start SendtoDB activity and send user details
+            Intent intent = new Intent(getActivity(), SendtoDB.class);
+            intent.putExtra("name", name);
+            intent.putExtra("phone", phone);
+            intent.putExtra("email", emailText);
+            intent.putExtra("deposit", deposit);
+            intent.putExtra("countryCode", countryCode);
+            startActivity(intent);
+        }
+    }
+    public static class ForeignCurrencyAccountFragment extends Fragment {
+
+        private EditText accountHolderName, phoneNumber, email, initialDeposit;
+        private Spinner countryCodeSpinner;
+        private Button submitButton;
+        private CheckBox agreementCheckbox;
+
+        @Nullable
+        @Override
+        public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+            View rootView = inflater.inflate(R.layout.foreign_currency_account_form, container, false);
+
+            // Initialize UI components
+            accountHolderName = rootView.findViewById(R.id.accountHolderName);
+            phoneNumber = rootView.findViewById(R.id.phoneNumber);
+            email = rootView.findViewById(R.id.email);
+            initialDeposit = rootView.findViewById(R.id.initialDeposit);
+            countryCodeSpinner = rootView.findViewById(R.id.countryCodeSpinner);
+            submitButton = rootView.findViewById(R.id.submitButton);
+            agreementCheckbox = rootView.findViewById(R.id.agreementCheckbox);
+
+            // Array of country codes
+            String[] countryCodes = {"+91 (India)", "+1 (USA)", "+44 (UK)", "+61 (Australia)", "+81 (Japan)",
+                    "+86 (China)", "+49 (Germany)", "+33 (France)", "+55 (Brazil)", "+27 (South Africa)", "+94 (Sri Lanka)"};
+
+            // Setting up the Spinner
+            ArrayAdapter<String> adapter = new ArrayAdapter<>(requireContext(), android.R.layout.simple_spinner_item, countryCodes);
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            countryCodeSpinner.setAdapter(adapter);
+
+            // Set OnClickListener for submitButton
+            submitButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    submitForm();
+                }
+            });
+
+            return rootView;
+        }
+
+        private void submitForm() {
+            String name = accountHolderName.getText().toString();
+            String phone = phoneNumber.getText().toString();
+            String emailText = email.getText().toString();
+            String deposit = initialDeposit.getText().toString();
+            String countryCode = countryCodeSpinner.getSelectedItem().toString();
+
+            // Log the values
+            Log.d("SalarySavingAccountFragment", "Account Holder Name: " + name);
+            Log.d("SalarySavingAccountFragment", "Phone Number: " + phone);
+            Log.d("SalarySavingAccountFragment", "Email: " + emailText);
+            Log.d("SalarySavingAccountFragment", "Initial Deposit: " + deposit);
+            Log.d("SalarySavingAccountFragment", "Country Code: " + countryCode);
+
+            // Check if the checkbox is selected
+            if (!agreementCheckbox.isChecked()) {
+                Toast.makeText(requireContext(), "Please agree to the terms and conditions", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            // Validate name: only letters (and spaces)
+            if (!name.matches("[a-zA-Z ]+")) {
+                Toast.makeText(requireContext(), "Name should only contain letters and spaces", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            // Validate phone number: exactly 10 digits
+            if (!phone.matches("\\d{10}")) {
+                Toast.makeText(requireContext(), "Phone number should be exactly 10 digits", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            // Validate email: should contain @
+            if (!emailText.contains("@")) {
+                Toast.makeText(requireContext(), "Invalid email address", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            // Perform further validation and submission logic here
+            if (name.isEmpty() || phone.isEmpty() || emailText.isEmpty() || deposit.isEmpty()) {
+                Toast.makeText(requireContext(), "Please fill in all fields", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            // Log saying form submitted successfully
+            Log.d("SalarySavingAccountFragment", "Form submitted successfully");
+
+            // Show a success message
+            Toast.makeText(requireContext(), "Form submitted successfully", Toast.LENGTH_SHORT).show();
+            // Start SendtoDB activity and send user details
+            Intent intent = new Intent(getActivity(), SendtoDB.class);
+            intent.putExtra("name", name);
+            intent.putExtra("phone", phone);
+            intent.putExtra("email", emailText);
+            intent.putExtra("deposit", deposit);
+            intent.putExtra("countryCode", countryCode);
+            startActivity(intent);
+        }
+    }
+    public static class StandardCurrentAccountFragment extends Fragment {
+
+        private EditText accountHolderName, phoneNumber, email, initialDeposit;
+        private Spinner countryCodeSpinner;
+        private Button submitButton;
+        private CheckBox agreementCheckbox;
+
+        @Nullable
+        @Override
+        public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+            View rootView = inflater.inflate(R.layout.standard_current_account_form, container, false);
+
+            // Initialize UI components
+            accountHolderName = rootView.findViewById(R.id.accountHolderName);
+            phoneNumber = rootView.findViewById(R.id.phoneNumber);
+            email = rootView.findViewById(R.id.email);
+            initialDeposit = rootView.findViewById(R.id.initialDeposit);
+            countryCodeSpinner = rootView.findViewById(R.id.countryCodeSpinner);
+            submitButton = rootView.findViewById(R.id.submitButton);
+            agreementCheckbox = rootView.findViewById(R.id.agreementCheckbox);
+
+            // Array of country codes
+            String[] countryCodes = {"+91 (India)", "+1 (USA)", "+44 (UK)", "+61 (Australia)", "+81 (Japan)",
+                    "+86 (China)", "+49 (Germany)", "+33 (France)", "+55 (Brazil)", "+27 (South Africa)", "+94 (Sri Lanka)"};
+
+            // Setting up the Spinner
+            ArrayAdapter<String> adapter = new ArrayAdapter<>(requireContext(), android.R.layout.simple_spinner_item, countryCodes);
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            countryCodeSpinner.setAdapter(adapter);
+
+            // Set OnClickListener for submitButton
+            submitButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    submitForm();
+                }
+            });
+
+            return rootView;
+        }
+
+        private void submitForm() {
+            String name = accountHolderName.getText().toString();
+            String phone = phoneNumber.getText().toString();
+            String emailText = email.getText().toString();
+            String deposit = initialDeposit.getText().toString();
+            String countryCode = countryCodeSpinner.getSelectedItem().toString();
+
+            // Log the values
+            Log.d("SalarySavingAccountFragment", "Account Holder Name: " + name);
+            Log.d("SalarySavingAccountFragment", "Phone Number: " + phone);
+            Log.d("SalarySavingAccountFragment", "Email: " + emailText);
+            Log.d("SalarySavingAccountFragment", "Initial Deposit: " + deposit);
+            Log.d("SalarySavingAccountFragment", "Country Code: " + countryCode);
+
+            // Check if the checkbox is selected
+            if (!agreementCheckbox.isChecked()) {
+                Toast.makeText(requireContext(), "Please agree to the terms and conditions", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            // Validate name: only letters (and spaces)
+            if (!name.matches("[a-zA-Z ]+")) {
+                Toast.makeText(requireContext(), "Name should only contain letters and spaces", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            // Validate phone number: exactly 10 digits
+            if (!phone.matches("\\d{10}")) {
+                Toast.makeText(requireContext(), "Phone number should be exactly 10 digits", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            // Validate email: should contain @
+            if (!emailText.contains("@")) {
+                Toast.makeText(requireContext(), "Invalid email address", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            // Perform further validation and submission logic here
+            if (name.isEmpty() || phone.isEmpty() || emailText.isEmpty() || deposit.isEmpty()) {
+                Toast.makeText(requireContext(), "Please fill in all fields", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            // Log saying form submitted successfully
+            Log.d("SalarySavingAccountFragment", "Form submitted successfully");
+
+            // Show a success message
+            Toast.makeText(requireContext(), "Form submitted successfully", Toast.LENGTH_SHORT).show();
+            // Start SendtoDB activity and send user details
+            Intent intent = new Intent(getActivity(), SendtoDB.class);
+            intent.putExtra("name", name);
+            intent.putExtra("phone", phone);
+            intent.putExtra("email", emailText);
+            intent.putExtra("deposit", deposit);
+            intent.putExtra("countryCode", countryCode);
+            startActivity(intent);
+        }
+    }
+
+
+
+
+    public static class RegularSavingAccountFragment extends Fragment {
+
+        private EditText accountHolderName, phoneNumber, email, initialDeposit;
+        private Spinner countryCodeSpinner;
+        private Button submitButton;
+        private CheckBox agreementCheckbox;
+
+        @Nullable
+        @Override
+        public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+            View rootView = inflater.inflate(R.layout.regular_savings_account_form, container, false);
+
+            // Initialize UI components
+            accountHolderName = rootView.findViewById(R.id.accountHolderName);
+            phoneNumber = rootView.findViewById(R.id.phoneNumber);
+            email = rootView.findViewById(R.id.email);
+            initialDeposit = rootView.findViewById(R.id.initialDeposit);
+            countryCodeSpinner = rootView.findViewById(R.id.countryCodeSpinner);
+            submitButton = rootView.findViewById(R.id.submitButton);
+            agreementCheckbox = rootView.findViewById(R.id.agreementCheckbox);
+
+            // Array of country codes
+            String[] countryCodes = {"+91 (India)", "+1 (USA)", "+44 (UK)", "+61 (Australia)", "+81 (Japan)",
+                    "+86 (China)", "+49 (Germany)", "+33 (France)", "+55 (Brazil)", "+27 (South Africa)", "+94 (Sri Lanka)"};
+
+            // Setting up the Spinner
+            ArrayAdapter<String> adapter = new ArrayAdapter<>(requireContext(), android.R.layout.simple_spinner_item, countryCodes);
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            countryCodeSpinner.setAdapter(adapter);
+
+            // Set OnClickListener for submitButton
+            submitButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    submitForm();
+                }
+            });
+
+            return rootView;
+        }
+
+        private void submitForm() {
+            String name = accountHolderName.getText().toString();
+            String phone = phoneNumber.getText().toString();
+            String emailText = email.getText().toString();
+            String deposit = initialDeposit.getText().toString();
+            String countryCode = countryCodeSpinner.getSelectedItem().toString();
+
+            // Log the values
+            Log.d("SalarySavingAccountFragment", "Account Holder Name: " + name);
+            Log.d("SalarySavingAccountFragment", "Phone Number: " + phone);
+            Log.d("SalarySavingAccountFragment", "Email: " + emailText);
+            Log.d("SalarySavingAccountFragment", "Initial Deposit: " + deposit);
+            Log.d("SalarySavingAccountFragment", "Country Code: " + countryCode);
+
+            // Check if the checkbox is selected
+            if (!agreementCheckbox.isChecked()) {
+                Toast.makeText(requireContext(), "Please agree to the terms and conditions", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            // Validate name: only letters (and spaces)
+            if (!name.matches("[a-zA-Z ]+")) {
+                Toast.makeText(requireContext(), "Name should only contain letters and spaces", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            // Validate phone number: exactly 10 digits
+            if (!phone.matches("\\d{10}")) {
+                Toast.makeText(requireContext(), "Phone number should be exactly 10 digits", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            // Validate email: should contain @
+            if (!emailText.contains("@")) {
+                Toast.makeText(requireContext(), "Invalid email address", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            // Perform further validation and submission logic here
+            if (name.isEmpty() || phone.isEmpty() || emailText.isEmpty() || deposit.isEmpty()) {
+                Toast.makeText(requireContext(), "Please fill in all fields", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            // Log saying form submitted successfully
+            Log.d("SalarySavingAccountFragment", "Form submitted successfully");
+
+            // Show a success message
+            Toast.makeText(requireContext(), "Form submitted successfully", Toast.LENGTH_SHORT).show();
+            // Start SendtoDB activity and send user details
+            Intent intent = new Intent(getActivity(), SendtoDB.class);
+            intent.putExtra("name", name);
+            intent.putExtra("phone", phone);
+            intent.putExtra("email", emailText);
+            intent.putExtra("deposit", deposit);
+            intent.putExtra("countryCode", countryCode);
+            startActivity(intent);
+        }
+    }
+    public static class ZeroBalanceSavingAccountFragment extends Fragment {
+
+        private EditText accountHolderName, phoneNumber, email, initialDeposit;
+        private Spinner countryCodeSpinner;
+        private Button submitButton;
+        private CheckBox agreementCheckbox;
+
+        @Nullable
+        @Override
+        public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+            View rootView = inflater.inflate(R.layout.zero_balance_savings_account_form, container, false);
+
+            // Initialize UI components
+            accountHolderName = rootView.findViewById(R.id.accountHolderName);
+            phoneNumber = rootView.findViewById(R.id.phoneNumber);
+            email = rootView.findViewById(R.id.email);
+            initialDeposit = rootView.findViewById(R.id.initialDeposit);
+            countryCodeSpinner = rootView.findViewById(R.id.countryCodeSpinner);
+            submitButton = rootView.findViewById(R.id.submitButton);
+            agreementCheckbox = rootView.findViewById(R.id.agreementCheckbox);
+
+            // Array of country codes
+            String[] countryCodes = {"+91 (India)", "+1 (USA)", "+44 (UK)", "+61 (Australia)", "+81 (Japan)",
+                    "+86 (China)", "+49 (Germany)", "+33 (France)", "+55 (Brazil)", "+27 (South Africa)", "+94 (Sri Lanka)"};
+
+            // Setting up the Spinner
+            ArrayAdapter<String> adapter = new ArrayAdapter<>(requireContext(), android.R.layout.simple_spinner_item, countryCodes);
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            countryCodeSpinner.setAdapter(adapter);
+
+            // Set OnClickListener for submitButton
+            submitButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    submitForm();
+                }
+            });
+
+            return rootView;
+        }
+
+        private void submitForm() {
+            String name = accountHolderName.getText().toString();
+            String phone = phoneNumber.getText().toString();
+            String emailText = email.getText().toString();
+            String deposit = initialDeposit.getText().toString();
+            String countryCode = countryCodeSpinner.getSelectedItem().toString();
+
+            // Log the values
+            Log.d("SalarySavingAccountFragment", "Account Holder Name: " + name);
+            Log.d("SalarySavingAccountFragment", "Phone Number: " + phone);
+            Log.d("SalarySavingAccountFragment", "Email: " + emailText);
+            Log.d("SalarySavingAccountFragment", "Initial Deposit: " + deposit);
+            Log.d("SalarySavingAccountFragment", "Country Code: " + countryCode);
+
+            // Check if the checkbox is selected
+            if (!agreementCheckbox.isChecked()) {
+                Toast.makeText(requireContext(), "Please agree to the terms and conditions", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            // Validate name: only letters (and spaces)
+            if (!name.matches("[a-zA-Z ]+")) {
+                Toast.makeText(requireContext(), "Name should only contain letters and spaces", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            // Validate phone number: exactly 10 digits
+            if (!phone.matches("\\d{10}")) {
+                Toast.makeText(requireContext(), "Phone number should be exactly 10 digits", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            // Validate email: should contain @
+            if (!emailText.contains("@")) {
+                Toast.makeText(requireContext(), "Invalid email address", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            // Perform further validation and submission logic here
+            if (name.isEmpty() || phone.isEmpty() || emailText.isEmpty() || deposit.isEmpty()) {
+                Toast.makeText(requireContext(), "Please fill in all fields", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            // Log saying form submitted successfully
+            Log.d("SalarySavingAccountFragment", "Form submitted successfully");
+
+            // Show a success message
+            Toast.makeText(requireContext(), "Form submitted successfully", Toast.LENGTH_SHORT).show();
+            // Start SendtoDB activity and send user details
+            Intent intent = new Intent(getActivity(), SendtoDB.class);
+            intent.putExtra("name", name);
+            intent.putExtra("phone", phone);
+            intent.putExtra("email", emailText);
+            intent.putExtra("deposit", deposit);
+            intent.putExtra("countryCode", countryCode);
+            startActivity(intent);
+        }
+    }
+    public static class KidsSavingAccountFragment extends Fragment {
+
+        private EditText accountHolderName, phoneNumber, email, initialDeposit;
+        private Spinner countryCodeSpinner;
+        private Button submitButton;
+        private CheckBox agreementCheckbox;
+
+        @Nullable
+        @Override
+        public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+            View rootView = inflater.inflate(R.layout.kids_savings_account_form, container, false);
+
+            // Initialize UI components
+            accountHolderName = rootView.findViewById(R.id.accountHolderName);
+            phoneNumber = rootView.findViewById(R.id.phoneNumber);
+            email = rootView.findViewById(R.id.email);
+            initialDeposit = rootView.findViewById(R.id.initialDeposit);
+            countryCodeSpinner = rootView.findViewById(R.id.countryCodeSpinner);
+            submitButton = rootView.findViewById(R.id.submitButton);
+            agreementCheckbox = rootView.findViewById(R.id.agreementCheckbox);
+
+            // Array of country codes
+            String[] countryCodes = {"+91 (India)", "+1 (USA)", "+44 (UK)", "+61 (Australia)", "+81 (Japan)",
+                    "+86 (China)", "+49 (Germany)", "+33 (France)", "+55 (Brazil)", "+27 (South Africa)", "+94 (Sri Lanka)"};
+
+            // Setting up the Spinner
+            ArrayAdapter<String> adapter = new ArrayAdapter<>(requireContext(), android.R.layout.simple_spinner_item, countryCodes);
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            countryCodeSpinner.setAdapter(adapter);
+
+            // Set OnClickListener for submitButton
+            submitButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    submitForm();
+                }
+            });
+
+            return rootView;
+        }
+
+        private void submitForm() {
+            String name = accountHolderName.getText().toString();
+            String phone = phoneNumber.getText().toString();
+            String emailText = email.getText().toString();
+            String deposit = initialDeposit.getText().toString();
+            String countryCode = countryCodeSpinner.getSelectedItem().toString();
+
+            // Log the values
+            Log.d("SalarySavingAccountFragment", "Account Holder Name: " + name);
+            Log.d("SalarySavingAccountFragment", "Phone Number: " + phone);
+            Log.d("SalarySavingAccountFragment", "Email: " + emailText);
+            Log.d("SalarySavingAccountFragment", "Initial Deposit: " + deposit);
+            Log.d("SalarySavingAccountFragment", "Country Code: " + countryCode);
+
+            // Check if the checkbox is selected
+            if (!agreementCheckbox.isChecked()) {
+                Toast.makeText(requireContext(), "Please agree to the terms and conditions", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            // Validate name: only letters (and spaces)
+            if (!name.matches("[a-zA-Z ]+")) {
+                Toast.makeText(requireContext(), "Name should only contain letters and spaces", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            // Validate phone number: exactly 10 digits
+            if (!phone.matches("\\d{10}")) {
+                Toast.makeText(requireContext(), "Phone number should be exactly 10 digits", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            // Validate email: should contain @
+            if (!emailText.contains("@")) {
+                Toast.makeText(requireContext(), "Invalid email address", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            // Perform further validation and submission logic here
+            if (name.isEmpty() || phone.isEmpty() || emailText.isEmpty() || deposit.isEmpty()) {
+                Toast.makeText(requireContext(), "Please fill in all fields", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            // Log saying form submitted successfully
+            Log.d("SalarySavingAccountFragment", "Form submitted successfully");
+
+            // Show a success message
+            Toast.makeText(requireContext(), "Form submitted successfully", Toast.LENGTH_SHORT).show();
+
+            // Start SendtoDB activity and send user details
+            Intent intent = new Intent(getActivity(), SendtoDB.class);
+            intent.putExtra("name", name);
+            intent.putExtra("phone", phone);
+            intent.putExtra("email", emailText);
+            intent.putExtra("deposit", deposit);
+            intent.putExtra("countryCode", countryCode);
+            startActivity(intent);
+        }
+    }
+    public static class SalarySavingAccountFragment extends Fragment {
+
+        private EditText accountHolderName, phoneNumber, email, initialDeposit;
+        private Spinner countryCodeSpinner;
+        private Button submitButton;
+        private CheckBox agreementCheckbox;
+
+        @Nullable
+        @Override
+        public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+            View rootView = inflater.inflate(R.layout.salary_account_form, container, false);
+
+            // Initialize UI components
+            accountHolderName = rootView.findViewById(R.id.accountHolderName);
+            phoneNumber = rootView.findViewById(R.id.phoneNumber);
+            email = rootView.findViewById(R.id.email);
+            initialDeposit = rootView.findViewById(R.id.initialDeposit);
+            countryCodeSpinner = rootView.findViewById(R.id.countryCodeSpinner);
+            submitButton = rootView.findViewById(R.id.submitButton);
+            agreementCheckbox = rootView.findViewById(R.id.agreementCheckbox);
+
+            // Array of country codes
+            String[] countryCodes = {"+91 (India)", "+1 (USA)", "+44 (UK)", "+61 (Australia)", "+81 (Japan)",
+                    "+86 (China)", "+49 (Germany)", "+33 (France)", "+55 (Brazil)", "+27 (South Africa)", "+94 (Sri Lanka)"};
+
+            // Setting up the Spinner
+            ArrayAdapter<String> adapter = new ArrayAdapter<>(requireContext(), android.R.layout.simple_spinner_item, countryCodes);
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            countryCodeSpinner.setAdapter(adapter);
+
+            // Set OnClickListener for submitButton
+            submitButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    submitForm();
+                }
+            });
+
+            return rootView;
+        }
+
+        private void submitForm() {
+            String name = accountHolderName.getText().toString();
+            String phone = phoneNumber.getText().toString();
+            String emailText = email.getText().toString();
+            String deposit = initialDeposit.getText().toString();
+            String countryCode = countryCodeSpinner.getSelectedItem().toString();
+
+            // Log the values
+            Log.d("SalarySavingAccountFragment", "Account Holder Name: " + name);
+            Log.d("SalarySavingAccountFragment", "Phone Number: " + phone);
+            Log.d("SalarySavingAccountFragment", "Email: " + emailText);
+            Log.d("SalarySavingAccountFragment", "Initial Deposit: " + deposit);
+            Log.d("SalarySavingAccountFragment", "Country Code: " + countryCode);
+
+            // Check if the checkbox is selected
+            if (!agreementCheckbox.isChecked()) {
+                Toast.makeText(requireContext(), "Please agree to the terms and conditions", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            // Validate name: only letters (and spaces)
+            if (!name.matches("[a-zA-Z ]+")) {
+                Toast.makeText(requireContext(), "Name should only contain letters and spaces", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            // Validate phone number: exactly 10 digits
+            if (!phone.matches("\\d{10}")) {
+                Toast.makeText(requireContext(), "Phone number should be exactly 10 digits", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            // Validate email: should contain @
+            if (!emailText.contains("@")) {
+                Toast.makeText(requireContext(), "Invalid email address", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            // Perform further validation and submission logic here
+            if (name.isEmpty() || phone.isEmpty() || emailText.isEmpty() || deposit.isEmpty()) {
+                Toast.makeText(requireContext(), "Please fill in all fields", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            // Log saying form submitted successfully
+            Log.d("SalarySavingAccountFragment", "Form submitted successfully");
+
+            // Show a success message
+            Toast.makeText(requireContext(), "Form submitted successfully", Toast.LENGTH_SHORT).show();
+
+
+            // Start SendtoDB activity and send user details
+            Intent intent = new Intent(getActivity(), SendtoDB.class);
+            intent.putExtra("name", name);
+            intent.putExtra("phone", phone);
+            intent.putExtra("email", emailText);
+            intent.putExtra("deposit", deposit);
+            intent.putExtra("countryCode", countryCode);
+            startActivity(intent);
+        }
+
+
+    }
+
+
 }

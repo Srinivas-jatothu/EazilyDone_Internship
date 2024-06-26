@@ -1,16 +1,57 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/light_blue"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <!-- Savings Account Form -->
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/salaryAccountForm"
+        android:id="@+id/regularSavingsAccountForm"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="16dp"
         android:visibility="visible">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cashBox"
+            android:layout_width="119dp"
+            android:layout_height="40dp"
+            android:background="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.95"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0">
+
+            <ImageView
+                android:id="@+id/cashImage"
+                android:layout_width="48dp"
+                android:layout_height="47dp"
+                android:src="@drawable/cash"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/cashAmount"
+                android:layout_width="83dp"
+                android:layout_height="56dp"
+                android:layout_marginStart="30dp"
+                android:background="@color/transparent"
+                android:gravity="center"
+                android:hint="1000"
+                android:inputType="none"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/cashImage"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
 
         <!-- Account Holder Name -->
         <TextView
@@ -31,30 +72,70 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/accountHolderNameLabel"
-            app:layout_constraintWidth_percent="1.0" />
+            app:layout_constraintWidth_percent="1.0"
+            tools:ignore="DuplicateClickableBoundsCheck" />
 
-        <!-- Account Number -->
+        <!-- Phone Number -->
         <TextView
-            android:id="@+id/accountNumberLabel"
+            android:id="@+id/phoneNumberLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="Account Number"
+            android:text="Phone Number"
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/accountHolderName" />
 
-        <EditText
-            android:id="@+id/accountNumber"
+        <LinearLayout
+            android:id="@+id/linearLayout2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:hint="Enter account number"
-            android:inputType="number"
+            android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/accountNumberLabel"
+            app:layout_constraintTop_toBottomOf="@id/phoneNumberLabel">
+
+            <!-- Country Code -->
+            <Spinner
+                android:id="@+id/countryCodeSpinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp" />
+
+            <!-- Phone Number -->
+            <EditText
+                android:id="@+id/phoneNumber"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="Enter phone number"
+                android:inputType="phone" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/emailLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Email"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
+
+        <EditText
+            android:id="@+id/email"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:hint="Enter email"
+            android:inputType="textEmailAddress"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/emailLabel"
             app:layout_constraintWidth_percent="1.0" />
+
 
         <!-- Initial Deposit Amount -->
         <TextView
@@ -65,7 +146,7 @@
             android:text="Initial Deposit Amount"
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/accountNumber" />
+            app:layout_constraintTop_toBottomOf="@+id/email" />
 
         <EditText
             android:id="@+id/initialDeposit"
@@ -75,16 +156,16 @@
             android:hint="Enter deposit amount"
             android:inputType="numberDecimal"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/initialDepositLabel"
+            app:layout_constraintTop_toBottomOf="@+id/initialDepositLabel"
             app:layout_constraintWidth_percent="1.0" />
 
-        <!-- Checkbox -->
         <CheckBox
             android:id="@+id/agreementCheckbox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="16dp"
             android:text="I agree to the terms and conditions"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/initialDeposit" />
@@ -110,6 +191,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/disclaimerText" />
-
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 </ScrollView>

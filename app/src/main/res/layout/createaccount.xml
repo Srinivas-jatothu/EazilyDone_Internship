@@ -11,19 +11,26 @@
         android:layout_height="match_parent"
         android:layout_weight="3"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:padding="16dp"
+        android:background="@color/light_cyan">
 
         <Button
             android:id="@+id/button_current_account"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Current Account" />
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:text="Current Account"
+            android:background="@color/light_yellow"
+            android:textColor="@color/black"
+        />
 
         <ScrollView
             android:id="@+id/scroll_view_current_accounts"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:background="@color/light_white">
 
             <LinearLayout
                 android:id="@+id/current_account_options"
@@ -38,18 +45,31 @@
                     android:id="@+id/button_premium_current_account"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Premium Current Account" />
+                    android:text="Premium Current Account"
+
+                    android:textColor="@color/light_blue"
+                    android:background="@color/white"
+                    android:textSize="13dp"
+                    android:textStyle="bold"/>
                 <Button
                     android:id="@+id/button_standard_current_account"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Standard Current Account" />
+                    android:text="Standard Current Account"
+                    android:textColor="@color/light_blue"
+                    android:background="@color/white"
+                    android:textSize="13dp"
+                    android:textStyle="bold" />
 
                 <Button
                     android:id="@+id/button_foreign_currency_account"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Foreign Currency Account" />
+                    android:text="Foreign Currency Account"
+                    android:textColor="@color/light_blue"
+                    android:background="@color/white"
+                    android:textSize="13dp"
+                    android:textStyle="bold" />
 
 
 
@@ -62,13 +82,19 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Saving Account"
-            android:layout_marginTop="16dp" />
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:layout_marginTop="16dp"
+            android:background="@color/light_yellow"
+            android:textColor="@color/black"
+            />
 
         <ScrollView
             android:id="@+id/scroll_view_saving_accounts"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:background="@color/light_white">
 
             <LinearLayout
                 android:id="@+id/saving_account_options"
@@ -83,25 +109,43 @@
                     android:id="@+id/button_regular_savings_account"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Regular Savings Account" />
+                    android:text="Regular Savings Account"
+                    android:textColor="@color/light_blue"
+                    android:background="@color/white"
+                    android:textSize="13dp"
+                    android:textStyle="bold"
+                />
 
                 <Button
                     android:id="@+id/button_zero_balance_savings_account"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Zero Balance or Basic Savings Account" />
+                    android:text="Zero Balance or Basic Savings Account"
+
+                    android:textColor="@color/light_blue"
+                    android:background="@color/white"
+                    android:textSize="13dp"
+                    android:textStyle="bold"/>
 
                 <Button
                     android:id="@+id/button_kids_savings_account"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Kids’ Savings Account" />
+                    android:text="Kids’ Savings Account"
+                    android:textColor="@color/light_blue"
+                    android:background="@color/white"
+                    android:textSize="13dp"
+                    android:textStyle="bold"/>
 
                 <Button
                     android:id="@+id/button_salary_account"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Salary Account – Salary-Based Savings Account" />
+                    android:text="Salary Account – Salary-Based Savings Account"
+                    android:textColor="@color/light_blue"
+                    android:background="@color/white"
+                    android:textSize="13dp"
+                    android:textStyle="bold"/>
 
             </LinearLayout>
         </ScrollView>
