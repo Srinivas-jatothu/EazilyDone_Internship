@@ -102,11 +102,6 @@
             android:screenOrientation="landscape"
             tools:ignore="DiscouragedApi"/>
 
-        <activity android:name=".PremiumCurrentAccount"
-            android:exported="false"
-            android:screenOrientation="landscape"
-            tools:ignore="DiscouragedApi"/>
-
         <activity android:name=".ForeignCurrencyAccount"
             android:exported="false"
             android:screenOrientation="landscape"
@@ -131,6 +126,19 @@
             android:exported="false"
             android:screenOrientation="landscape"
             tools:ignore="DiscouragedApi"/>
+
+        <activity android:name=".AccountDetailsActivity"
+            android:exported="false"
+            android:screenOrientation="landscape"
+            tools:ignore="DiscouragedApi"/>
+
+        <activity android:name=".DepositActivity"
+            android:exported="false"
+            android:screenOrientation="landscape"
+            tools:ignore="DiscouragedApi"/>
+
+
+
 
     </application>
 

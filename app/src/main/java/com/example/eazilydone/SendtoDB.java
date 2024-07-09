@@ -3,44 +3,107 @@ package com.example.eazilydone;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+//public class SendtoDB extends AppCompatActivity {
+//
+//        @Override
+//        protected void onCreate(Bundle savedInstanceState) {
+//            super.onCreate(savedInstanceState);
+//            setContentView(R.layout.activity_sendto_db);
+//
+//            // Retrieve data from Intent
+//            Intent intent = getIntent();
+//            String name = intent.getStringExtra("name");
+//            String phone = intent.getStringExtra("phone");
+//            String email = intent.getStringExtra("email");
+//            String deposit = intent.getStringExtra("deposit");
+//            String countryCode = intent.getStringExtra("countryCode");
+//
+//            // Log the received values
+//            Log.d("SendtoDB", "Received Name: " + name);
+//            Log.d("SendtoDB", "Received Phone: " + phone);
+//            Log.d("SendtoDB", "Received Email: " + email);
+//            Log.d("SendtoDB", "Received Deposit: " + deposit);
+//            Log.d("SendtoDB", "Received Country Code: " + countryCode);
+//
+//            // Set the values to TextViews
+//            TextView nameTextView = findViewById(R.id.nameTextView);
+//            TextView phoneTextView = findViewById(R.id.phoneTextView);
+//            TextView emailTextView = findViewById(R.id.emailTextView);
+//            TextView depositTextView = findViewById(R.id.depositTextView);
+//            TextView countryCodeTextView = findViewById(R.id.countryCodeTextView);
+//
+//            nameTextView.setText(name);
+//            phoneTextView.setText(phone);
+//            emailTextView.setText(email);
+//            depositTextView.setText(deposit);
+//            countryCodeTextView.setText(countryCode);
+//        }
+//
+//}
+
 public class SendtoDB extends AppCompatActivity {
 
-        @Override
-        protected void onCreate(Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-            setContentView(R.layout.activity_sendto_db);
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_sendto_db);
 
-            // Retrieve data from Intent
-            Intent intent = getIntent();
-            String name = intent.getStringExtra("name");
-            String phone = intent.getStringExtra("phone");
-            String email = intent.getStringExtra("email");
-            String deposit = intent.getStringExtra("deposit");
-            String countryCode = intent.getStringExtra("countryCode");
+        // Retrieve data from Intent
+        Intent intent = getIntent();
+        String name = intent.getStringExtra("name");
+        String phone = intent.getStringExtra("phone");
+        String email = intent.getStringExtra("email");
+        String deposit = intent.getStringExtra("deposit");
+        String countryCode = intent.getStringExtra("countryCode");
 
-            // Log the received values
-            Log.d("SendtoDB", "Received Name: " + name);
-            Log.d("SendtoDB", "Received Phone: " + phone);
-            Log.d("SendtoDB", "Received Email: " + email);
-            Log.d("SendtoDB", "Received Deposit: " + deposit);
-            Log.d("SendtoDB", "Received Country Code: " + countryCode);
+        // Log the received values
+        Log.d("SendtoDB", "Received Name: " + name);
+        Log.d("SendtoDB", "Received Phone: " + phone);
+        Log.d("SendtoDB", "Received Email: " + email);
+        Log.d("SendtoDB", "Received Deposit: " + deposit);
+        Log.d("SendtoDB", "Received Country Code: " + countryCode);
 
-            // Set the values to TextViews
-            TextView nameTextView = findViewById(R.id.nameTextView);
-            TextView phoneTextView = findViewById(R.id.phoneTextView);
-            TextView emailTextView = findViewById(R.id.emailTextView);
-            TextView depositTextView = findViewById(R.id.depositTextView);
-            TextView countryCodeTextView = findViewById(R.id.countryCodeTextView);
+        // Set the values to TextViews
+        TextView nameTextView = findViewById(R.id.nameTextView);
+        TextView phoneTextView = findViewById(R.id.phoneTextView);
+        TextView emailTextView = findViewById(R.id.emailTextView);
+        TextView depositTextView = findViewById(R.id.depositTextView);
+        TextView countryCodeTextView = findViewById(R.id.countryCodeTextView);
 
-            nameTextView.setText(name);
-            phoneTextView.setText(phone);
-            emailTextView.setText(email);
-            depositTextView.setText(deposit);
-            countryCodeTextView.setText(countryCode);
-        }
+        nameTextView.setText("Name: " + name);
+        phoneTextView.setText("Phone: " + phone);
+        emailTextView.setText("Email: " + email);
+        depositTextView.setText("Deposit: " + deposit);
+        countryCodeTextView.setText("Country Code: " + countryCode);
 
+        // Set up the PIN submission logic
+        EditText pinEditText = findViewById(R.id.pinEditText);
+        Button submitPinButton = findViewById(R.id.submitPinButton);
+
+        submitPinButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String pin = pinEditText.getText().toString();
+
+                if (pin.length() == 4 && pin.matches("\\d+")) {
+                    Toast.makeText(SendtoDB.this, "PIN has been generated: " + pin, Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(SendtoDB.this, "Please enter a valid 4-digit PIN", Toast.LENGTH_SHORT).show();
+                }
+
+                //call new activity
+                Intent intent = new Intent(SendtoDB.this, AccountNumberGenerator.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+    }
 }

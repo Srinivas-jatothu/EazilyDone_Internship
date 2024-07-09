@@ -45,7 +45,9 @@ public class ThirdActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Toast.makeText(ThirdActivity.this, "Deposit Selected", Toast.LENGTH_SHORT).show();
-                // Implement action for Deposit
+                // Implement action for Deposit by calling DepositActivity
+                Intent intent = new Intent(ThirdActivity.this, DepositActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -61,7 +63,9 @@ public class ThirdActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Toast.makeText(ThirdActivity.this, "Account Details Selected", Toast.LENGTH_SHORT).show();
-                // Implement action for Account Details
+                // Implement action for Account Details by calling AccountDetailsActivity
+                Intent intent = new Intent(ThirdActivity.this, AccountDetailsActivity.class);
+                startActivity(intent);
             }
         });
         chatbotButton.setOnClickListener(new View.OnClickListener() {
