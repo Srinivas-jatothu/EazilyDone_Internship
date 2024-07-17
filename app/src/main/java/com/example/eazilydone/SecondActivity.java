@@ -11,6 +11,8 @@ import android.view.ScaleGestureDetector;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
@@ -39,6 +41,13 @@ public class SecondActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second);
+
+        // Initialize CashAmountManager (if not already initialized)
+        CashAmountManager.getInstance();
+
+
+        // Update cash amount in cash_amount_view.xml
+        updateCashAmount();
 
         scaleGestureDetector = new ScaleGestureDetector(this, new ScaleListener());
         gestureDetector = new GestureDetector(this, new SwipeListener());
@@ -206,26 +215,6 @@ public class SecondActivity extends AppCompatActivity {
     }
 
 
-
-//    private void movePlayer(int dx, int dy) {
-//        ConstraintLayout.LayoutParams params = (ConstraintLayout.LayoutParams) personImage.getLayoutParams();
-//        params.horizontalBias += (float) dx / secondLayout.getWidth();
-//        params.verticalBias += (float) dy / secondLayout.getHeight();
-//        personImage.setLayoutParams(params);
-//
-//        // Update the translation of the map to move in the opposite direction of the character
-//        float newTranslationX = secondLayout.getTranslationX() - dx;
-//        float newTranslationY = secondLayout.getTranslationY() - dy;
-//
-//        // Clamp the translations to ensure the map does not move out of bounds
-//        newTranslationX = clampTranslation(newTranslationX, secondLayout.getWidth(), scaleFactor);
-//        newTranslationY = clampTranslation(newTranslationY, secondLayout.getHeight(), scaleFactor);
-//
-//        secondLayout.setTranslationX(newTranslationX);
-//        secondLayout.setTranslationY(newTranslationY);
-//    }
-
-
     private void movePlayer(int dx, int dy) {
         ConstraintLayout.LayoutParams params = (ConstraintLayout.LayoutParams) personImage.getLayoutParams();
         params.horizontalBias += (float) dx / secondLayout.getWidth();
@@ -257,6 +246,21 @@ public class SecondActivity extends AppCompatActivity {
 
         secondLayout.setTranslationX(newTranslationX);
         secondLayout.setTranslationY(newTranslationY);
+    }
+
+    // Method to update cash amount in cash_amount_view.xml
+    private void updateCashAmount() {
+        TextView cashAmountTextView = findViewById(R.id.cashAmount); // Assuming cashAmount is in cash_amount_view.xml
+        cashAmountTextView.setText(String.valueOf(CashAmountManager.getInstance().getCashAmount()));
+    }
+
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // Update cash amount when returning to MainActivity
+        updateCashAmount();
     }
 
 

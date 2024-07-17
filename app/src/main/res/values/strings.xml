@@ -2,5 +2,7 @@
     <string name="app_name">EazilyDone</string>
     <string name="none" />
     <string name="type_a_message">Type a message</string>
+    <string name="placeholder_cash_amount">9999</string>
+
 
 </resources>

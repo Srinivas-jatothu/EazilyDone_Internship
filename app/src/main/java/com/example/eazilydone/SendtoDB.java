@@ -63,6 +63,7 @@ public class SendtoDB extends AppCompatActivity {
         String email = intent.getStringExtra("email");
         String deposit = intent.getStringExtra("deposit");
         String countryCode = intent.getStringExtra("countryCode");
+        String dateTime = getIntent().getStringExtra("dateAndTime");
 
         // Log the received values
         Log.d("SendtoDB", "Received Name: " + name);
@@ -70,6 +71,7 @@ public class SendtoDB extends AppCompatActivity {
         Log.d("SendtoDB", "Received Email: " + email);
         Log.d("SendtoDB", "Received Deposit: " + deposit);
         Log.d("SendtoDB", "Received Country Code: " + countryCode);
+        Log.d("SendtoDB", "Received Date and Time: " + dateTime);
 
         // Set the values to TextViews
         TextView nameTextView = findViewById(R.id.nameTextView);
@@ -77,12 +79,14 @@ public class SendtoDB extends AppCompatActivity {
         TextView emailTextView = findViewById(R.id.emailTextView);
         TextView depositTextView = findViewById(R.id.depositTextView);
         TextView countryCodeTextView = findViewById(R.id.countryCodeTextView);
+        TextView dateTimeTextView = findViewById(R.id.dateTimeTextView);
 
         nameTextView.setText("Name: " + name);
         phoneTextView.setText("Phone: " + phone);
         emailTextView.setText("Email: " + email);
         depositTextView.setText("Deposit: " + deposit);
         countryCodeTextView.setText("Country Code: " + countryCode);
+        dateTimeTextView.setText("Date and Time: " + dateTime);
 
         // Set up the PIN submission logic
         EditText pinEditText = findViewById(R.id.pinEditText);
@@ -105,5 +109,19 @@ public class SendtoDB extends AppCompatActivity {
                 finish();
             }
         });
+    }
+
+
+    public void saveAccountDetails(String name, String accountNumber, String amount, String pin) {
+        // Implement the logic to save account details to the database here
+        // For example, you can use SQLite, Room, or any other database method
+
+        // This is just a placeholder. Add your actual database code here.
+        System.out.println("Saving account details...");
+        System.out.println("Name: " + name);
+        System.out.println("Account Number: " + accountNumber);
+        System.out.println("Deposit Amount: ₹" + amount);
+        System.out.println("PIN: " + pin);
+
     }
 }

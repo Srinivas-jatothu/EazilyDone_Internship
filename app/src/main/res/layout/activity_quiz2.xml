@@ -177,15 +177,15 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cashBox"
-        android:layout_width="119dp"
-        android:layout_height="56dp"
+        android:layout_width="100dp"
+        android:layout_height="45dp"
         android:background="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.009"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.048">
+        app:layout_constraintVertical_bias="0.0">
 
         <ImageView
             android:id="@+id/cashImage"
@@ -202,8 +202,8 @@
             android:layout_marginStart="30dp"
             android:background="@color/transparent"
             android:gravity="center"
-            android:hint="1000"
-            android:inputType="none"
+            android:hint="0"
+            android:inputType="numberDecimal"
             android:textColor="@color/black"
             android:textSize="20sp"
             android:textStyle="bold"

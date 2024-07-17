@@ -578,4 +578,5 @@ public class QuizActivity2 extends AppCompatActivity {
             selectedRomanisedSinhalaOptions.add(romanisedSinhalaOptions[index]);
         }
     }
+
 }

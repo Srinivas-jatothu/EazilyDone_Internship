@@ -27,7 +27,6 @@ public class AccountDetailsActivity extends AppCompatActivity {
 
         etName = findViewById(R.id.etName);
         etAccountNumber = findViewById(R.id.etAccountNumber);
-        etAmount = findViewById(R.id.etAmount);
         etPin = findViewById(R.id.etPin);
         checkBox = findViewById(R.id.checkBox);
         btnSubmit = findViewById(R.id.btnSubmit);
@@ -52,6 +51,7 @@ public class AccountDetailsActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (validateInput()) {
                     displayDetails();
+                    sendDataToDatabase();
                 }
             }
         });
@@ -95,5 +95,14 @@ public class AccountDetailsActivity extends AppCompatActivity {
         tvDisplayPin.setText("PIN: " + pin);
 
         scrollView.setVisibility(View.GONE); // Hide the form once details are displayed
+    }
+
+    private void sendDataToDatabase() {
+        String name = etName.getText().toString().trim();
+        String accountNumber = etAccountNumber.getText().toString().trim();
+        String amount = etAmount.getText().toString().trim();
+        String pin = etPin.getText().toString().trim();
+        SendtoDB sendToDB = new SendtoDB();
+        sendToDB.saveAccountDetails(name, accountNumber, amount, pin);
     }
 }

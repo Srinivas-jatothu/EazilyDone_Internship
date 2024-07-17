@@ -110,14 +110,14 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <EditText
+        <TextView
             android:id="@+id/cashAmount"
             android:layout_width="83dp"
             android:layout_height="56dp"
             android:layout_marginStart="30dp"
             android:background="@color/transparent"
             android:gravity="center"
-            android:hint="1000"
+            android:hint="0"
             android:inputType="numberDecimal"
             android:textColor="@color/black"
             android:textSize="20sp"

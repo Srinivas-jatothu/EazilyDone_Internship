@@ -36,14 +36,15 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cashBox"
-        android:layout_width="119dp"
-        android:layout_height="56dp"
+        android:layout_width="100dp"
+        android:layout_height="45dp"
         android:background="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.457">
+        app:layout_constraintVertical_bias="0.0">
 
         <ImageView
             android:id="@+id/cashImage"
@@ -53,7 +54,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <EditText
+        <TextView
             android:id="@+id/cashAmount"
             android:layout_width="83dp"
             android:layout_height="56dp"
@@ -61,7 +62,7 @@
             android:background="@color/transparent"
             android:gravity="center"
             android:hint="0"
-            android:inputType="none"
+            android:inputType="numberDecimal"
             android:textColor="@color/black"
             android:textSize="20sp"
             android:textStyle="bold"

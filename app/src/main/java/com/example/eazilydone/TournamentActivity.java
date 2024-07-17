@@ -24,6 +24,13 @@ public class TournamentActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tournament);
 
+        // Initialize CashAmountManager (if not already initialized)
+        CashAmountManager.getInstance();
+
+        // Update cash amount in cash_amount_view.xml
+        updateCashAmount();
+
+
         nextButton = findViewById(R.id.nextButton);
         rulesDisplay = findViewById(R.id.RulesDisplay);
 
@@ -85,6 +92,20 @@ public class TournamentActivity extends AppCompatActivity {
             // All rules displayed, show the next button
             nextButton.setVisibility(View.VISIBLE);
         }
+    }
+
+    private void updateCashAmount() {
+        TextView cashAmountTextView = findViewById(R.id.cashAmount); // Assuming cashAmount is in cash_amount_view.xml
+        cashAmountTextView.setText(String.valueOf(CashAmountManager.getInstance().getCashAmount()));
+    }
+
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // Update cash amount when returning to MainActivity
+        updateCashAmount();
     }
 
 
