@@ -22,19 +22,18 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-public class StandardCurrentAccountFragment extends Fragment {
+public class PremiumAccountFragment extends Fragment {
 
     private EditText accountHolderName, phoneNumber, email, initialDeposit;
     private Spinner countryCodeSpinner;
     private Button submitButton;
     private CheckBox agreementCheckbox;
-
     private TextView cashAmountTextView; // Declare cashAmountTextView as a class member
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.standard_current_account_form, container, false);
+        View rootView = inflater.inflate(R.layout.premium_current_account_form, container, false);
 
         // Initialize CashAmountManager (if not already initialized)
         CashAmountManager.getInstance();
@@ -78,12 +77,12 @@ public class StandardCurrentAccountFragment extends Fragment {
         String currentDateAndTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault()).format(new Date());
 
         // Log the values
-        Log.d("SalarySavingAccountFragment", "Account Holder Name: " + name);
-        Log.d("SalarySavingAccountFragment", "Phone Number: " + phone);
-        Log.d("SalarySavingAccountFragment", "Email: " + emailText);
-        Log.d("SalarySavingAccountFragment", "Initial Deposit: " + deposit);
-        Log.d("SalarySavingAccountFragment", "Country Code: " + countryCode);
-        Log.d("SalarySavingAccountFragment", "Date and Time: " + currentDateAndTime);
+        Log.d("PremiumAccountFragment", "Account Holder Name: " + name);
+        Log.d("PremiumAccountFragment", "Phone Number: " + phone);
+        Log.d("PremiumAccountFragment", "Email: " + emailText);
+        Log.d("PremiumAccountFragment", "Initial Deposit: " + deposit);
+        Log.d("PremiumAccountFragment", "Country Code: " + countryCode);
+        Log.d("PremiumAccountFragment", "Date and Time: " + currentDateAndTime);
 
         if (Integer.parseInt(deposit) > CashAmountManager.getInstance().getCashAmount()) {
             Toast.makeText(requireContext(), "Insufficient balance", Toast.LENGTH_SHORT).show();
@@ -95,13 +94,8 @@ public class StandardCurrentAccountFragment extends Fragment {
             return;
         }
 
-
-        //subtract the deposit amount from the cash amount in CashAmountManager class and update the cash amount in cash_amount_view.xml
-        CashAmountManager.getInstance().subtractCashAmount(Integer.parseInt(deposit));
-
-
         // Check if the checkbox is selected
-        if (!agreementCheckbox.isChecked()) {
+        if(!agreementCheckbox.isChecked()) {
             Toast.makeText(requireContext(), "Please agree to the terms and conditions", Toast.LENGTH_SHORT).show();
             return;
         }
@@ -130,8 +124,12 @@ public class StandardCurrentAccountFragment extends Fragment {
             return;
         }
 
+        // Calculate the deposit amount with 15% interest for each year
+        int years = 1; // Assuming interest is calculated for one year. Modify as needed.
+        double depositWithInterest = calculateInterest(Integer.parseInt(deposit), years);
+
         // Log saying form submitted successfully
-        Log.d("SalarySavingAccountFragment", "Form submitted successfully");
+        Log.d("PremiumAccountFragment", "Form submitted successfully");
 
         // Show a success message
         Toast.makeText(requireContext(), "Form submitted successfully", Toast.LENGTH_SHORT).show();
@@ -141,10 +139,18 @@ public class StandardCurrentAccountFragment extends Fragment {
         intent.putExtra("name", name);
         intent.putExtra("phone", phone);
         intent.putExtra("email", emailText);
-        intent.putExtra("deposit", deposit);
+        intent.putExtra("deposit", String.valueOf(depositWithInterest));
         intent.putExtra("countryCode", countryCode);
         intent.putExtra("dateAndTime", currentDateAndTime);
+        intent.putExtra("accountType", "Premium Current Account");
         startActivity(intent);
+    }
+
+    // Method to calculate the deposit amount with 15% interest for each year
+    private double calculateInterest(int deposit, int years) {
+        double interestRate = 0.15;
+        // Formula to calculate compound interest: A = P(1 + r)^n
+        return deposit * Math.pow(1 + interestRate, years);
     }
 
     // Method to update cash amount in cash_amount_view.xml
@@ -160,10 +166,5 @@ public class StandardCurrentAccountFragment extends Fragment {
         // Update cash amount when returning to MainActivity
         updateCashAmount();
     }
-
 }
-
-
-
-
 

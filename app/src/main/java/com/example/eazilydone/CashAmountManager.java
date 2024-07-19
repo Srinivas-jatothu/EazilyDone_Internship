@@ -47,7 +47,7 @@ public class CashAmountManager {
     // Private constructor to prevent instantiation outside of this class
     private CashAmountManager() {
         // Initialize with a default or initial amount
-        this.cashAmount = 12340;  // Default to 0
+        this.cashAmount = 10000;  // Default to 0
     }
 
     // Singleton pattern to ensure only one instance of CashAmountManager exists
@@ -58,18 +58,20 @@ public class CashAmountManager {
         return instance;
     }
 
+
     // Method to get the current cash amount
     public int getCashAmount() {
         return cashAmount;
     }
 
     // Method to set the cash amount (accumulate instead of overwrite)
-    public void setCashAmount(int cashAmount) {
+    public void setCashAmount(double cashAmount) {
         this.cashAmount += cashAmount;  // Accumulate the amount
     }
 
-    // Method to increment the cash amount
-    public void incrementCashAmount(int incrementBy) {
-        this.cashAmount += incrementBy;
+    public void subtractCashAmount(int i) {
+        this.cashAmount -= i;
     }
+
+
 }

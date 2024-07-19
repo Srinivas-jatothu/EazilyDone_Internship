@@ -1,3 +1,4 @@
+
 package com.example.eazilydone;
 
 import android.content.Intent;
@@ -22,7 +23,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-public class StandardCurrentAccountFragment extends Fragment {
+public class ZeroBalanceSavingAccountFragment extends Fragment {
 
     private EditText accountHolderName, phoneNumber, email, initialDeposit;
     private Spinner countryCodeSpinner;
@@ -34,7 +35,7 @@ public class StandardCurrentAccountFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.standard_current_account_form, container, false);
+        View rootView = inflater.inflate(R.layout.zero_balance_savings_account_form, container, false);
 
         // Initialize CashAmountManager (if not already initialized)
         CashAmountManager.getInstance();
@@ -85,6 +86,8 @@ public class StandardCurrentAccountFragment extends Fragment {
         Log.d("SalarySavingAccountFragment", "Country Code: " + countryCode);
         Log.d("SalarySavingAccountFragment", "Date and Time: " + currentDateAndTime);
 
+        //check if the deposit amount is greater than the cash amount in CashAmountManager class, if yes, show a toast message that insufficient balance, else subtract the deposit amount from the cash amount, and also the deposit amount should be greater than 1000
+
         if (Integer.parseInt(deposit) > CashAmountManager.getInstance().getCashAmount()) {
             Toast.makeText(requireContext(), "Insufficient balance", Toast.LENGTH_SHORT).show();
             return;
@@ -98,7 +101,6 @@ public class StandardCurrentAccountFragment extends Fragment {
 
         //subtract the deposit amount from the cash amount in CashAmountManager class and update the cash amount in cash_amount_view.xml
         CashAmountManager.getInstance().subtractCashAmount(Integer.parseInt(deposit));
-
 
         // Check if the checkbox is selected
         if (!agreementCheckbox.isChecked()) {

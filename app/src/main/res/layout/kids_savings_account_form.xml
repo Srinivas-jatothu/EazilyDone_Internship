@@ -13,6 +13,16 @@
         android:padding="16dp"
         android:visibility="visible">
 
+
+        <include
+            android:id="@+id/cashBoxInclude"
+            layout="@layout/cash_amount_view"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="parent"
+            />
+
         <!-- Account Holder Name -->
         <TextView
             android:id="@+id/accountHolderNameLabel"

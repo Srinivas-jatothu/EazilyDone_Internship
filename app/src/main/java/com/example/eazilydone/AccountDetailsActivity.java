@@ -66,10 +66,6 @@ public class AccountDetailsActivity extends AppCompatActivity {
             Toast.makeText(this, "Please enter your account number", Toast.LENGTH_SHORT).show();
             return false;
         }
-        if (etAmount.getText().toString().trim().isEmpty()) {
-            Toast.makeText(this, "Please enter deposit amount", Toast.LENGTH_SHORT).show();
-            return false;
-        }
         if (etPin.getText().toString().trim().length() != 4) {
             Toast.makeText(this, "Please enter a 4-digit PIN", Toast.LENGTH_SHORT).show();
             return false;

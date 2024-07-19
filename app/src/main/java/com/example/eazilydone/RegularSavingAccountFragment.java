@@ -1,3 +1,4 @@
+
 package com.example.eazilydone;
 
 import android.content.Intent;
@@ -22,7 +23,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-public class StandardCurrentAccountFragment extends Fragment {
+public class RegularSavingAccountFragment extends Fragment {
 
     private EditText accountHolderName, phoneNumber, email, initialDeposit;
     private Spinner countryCodeSpinner;
@@ -34,7 +35,7 @@ public class StandardCurrentAccountFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.standard_current_account_form, container, false);
+        View rootView = inflater.inflate(R.layout.regular_savings_account_form, container, false);
 
         // Initialize CashAmountManager (if not already initialized)
         CashAmountManager.getInstance();

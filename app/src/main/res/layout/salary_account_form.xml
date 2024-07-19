@@ -5,6 +5,11 @@
     android:background="@color/light_blue"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+
+
+
+
+
     <!-- Savings Account Form -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/regularSavingsAccountForm"
@@ -13,44 +18,16 @@
         android:padding="16dp"
         android:visibility="visible">
 
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/cashBox"
-            android:layout_width="119dp"
-            android:layout_height="40dp"
-            android:background="@color/white"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.95"
-            app:layout_constraintStart_toStartOf="parent"
+        <include
+            android:id="@+id/cashBoxInclude"
+            layout="@layout/cash_amount_view"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0">
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="parent"
+        />
 
-            <ImageView
-                android:id="@+id/cashImage"
-                android:layout_width="48dp"
-                android:layout_height="47dp"
-                android:src="@drawable/cash"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/cashAmount"
-                android:layout_width="83dp"
-                android:layout_height="56dp"
-                android:layout_marginStart="30dp"
-                android:background="@color/transparent"
-                android:gravity="center"
-                android:hint="1000"
-                android:inputType="none"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/cashImage"
-                app:layout_constraintTop_toTopOf="parent" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
 
 
         <!-- Account Holder Name -->

@@ -21,7 +21,7 @@
             android:screenOrientation="landscape"
             tools:ignore="DiscouragedApi"/>
         <activity
-            android:name=".QuizActivity"
+            android:name=".ThirdActivity"
             android:exported="true"
             android:screenOrientation="landscape"
             tools:ignore="DiscouragedApi">
@@ -31,13 +31,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".MainActivity"
             android:exported="false"
             android:screenOrientation="landscape"
             tools:ignore="DiscouragedApi"/>
         <activity
-            android:name=".ThirdActivity"
+            android:name=".QuizActivity"
             android:exported="false"
             android:screenOrientation="landscape"
             tools:ignore="DiscouragedApi"/>
@@ -137,8 +138,10 @@
             android:screenOrientation="landscape"
             tools:ignore="DiscouragedApi"/>
 
-
-
+        <activity android:name=".WithDraw"
+            android:exported="false"
+            android:screenOrientation="landscape"
+            tools:ignore="DiscouragedApi"/>
 
     </application>
 

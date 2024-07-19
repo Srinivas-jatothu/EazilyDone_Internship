@@ -36,7 +36,7 @@ public class QuizActivity3 extends AppCompatActivity {
         Button finishButton = findViewById(R.id.finish);
         finishButton.setOnClickListener(v -> {
             // Example: Increment cash amount by 10 (adjust as per your logic)
-            cashAmountManager.incrementCashAmount(10);
+            //cashAmountManager.incrementCashAmount(10);
 
             // Display "Hello" message when the button is clicked
             Toast.makeText(QuizActivity3.this, "Hello", Toast.LENGTH_SHORT).show();

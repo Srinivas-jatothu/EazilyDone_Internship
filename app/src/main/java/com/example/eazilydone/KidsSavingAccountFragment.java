@@ -22,7 +22,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-public class StandardCurrentAccountFragment extends Fragment {
+public class KidsSavingAccountFragment extends Fragment {
 
     private EditText accountHolderName, phoneNumber, email, initialDeposit;
     private Spinner countryCodeSpinner;
@@ -34,7 +34,7 @@ public class StandardCurrentAccountFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.standard_current_account_form, container, false);
+        View rootView = inflater.inflate(R.layout.kids_savings_account_form, container, false);
 
         // Initialize CashAmountManager (if not already initialized)
         CashAmountManager.getInstance();
@@ -98,7 +98,6 @@ public class StandardCurrentAccountFragment extends Fragment {
 
         //subtract the deposit amount from the cash amount in CashAmountManager class and update the cash amount in cash_amount_view.xml
         CashAmountManager.getInstance().subtractCashAmount(Integer.parseInt(deposit));
-
 
         // Check if the checkbox is selected
         if (!agreementCheckbox.isChecked()) {

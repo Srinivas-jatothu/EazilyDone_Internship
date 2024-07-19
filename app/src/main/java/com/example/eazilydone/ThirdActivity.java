@@ -33,7 +33,7 @@ public class ThirdActivity extends AppCompatActivity {
         Button accountDetailsButton = findViewById(R.id.accountDetailsButton);
         Button createAccountButton = findViewById(R.id.createAccountButton);
         Button depositButton = findViewById(R.id.depositButton);
-        Button otherButton = findViewById(R.id.otherButton);
+        Button withdrawButton = findViewById(R.id.withdrawButton);
         Button chatbotButton = findViewById(R.id.chatbotButton);
         ScrollView scrollView = findViewById(R.id.scrollView2);
 
@@ -51,11 +51,13 @@ public class ThirdActivity extends AppCompatActivity {
             }
         });
 
-        otherButton.setOnClickListener(new View.OnClickListener() {
+        withdrawButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(ThirdActivity.this, "Other Selected", Toast.LENGTH_SHORT).show();
-                // Implement action for Other
+                Toast.makeText(ThirdActivity.this, "WithDraw Selected", Toast.LENGTH_SHORT).show();
+                // Implement action for Deposit by calling DepositActivity
+                Intent intent = new Intent(ThirdActivity.this, WithDraw.class);
+                startActivity(intent);
             }
         });
 

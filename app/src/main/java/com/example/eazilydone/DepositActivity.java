@@ -45,7 +45,6 @@ public class DepositActivity extends AppCompatActivity {
             }
         });
     }
-
     private boolean validateInput() {
         if (etName.getText().toString().trim().isEmpty()) {
             Toast.makeText(this, "Please enter your name", Toast.LENGTH_SHORT).show();
@@ -65,7 +64,6 @@ public class DepositActivity extends AppCompatActivity {
         }
         return true;
     }
-
     private void displayDetails() {
         String name = etName.getText().toString().trim();
         String accountNumber = etAccountNumber.getText().toString().trim();
@@ -79,4 +77,5 @@ public class DepositActivity extends AppCompatActivity {
 
         scrollView.setVisibility(View.GONE); // Hide the form once details are displayed
     }
+
 }
