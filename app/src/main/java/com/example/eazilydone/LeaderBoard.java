@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.eazilydone.DTO.LeaderBoardItem;
 import com.example.eazilydone.DTO.LeaderBoardResponse;
 import com.example.eazilydone.backend.APIClient;
+import com.example.eazilydone.data.playerData;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -29,8 +30,6 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-//TODO :: Yet to implement game data and fetching email from game data instead of harcoring it
-//
 public class LeaderBoard extends AppCompatActivity {
     private RecyclerView recyclerView;
     private ResultAdapter adapter;
@@ -52,10 +51,12 @@ public class LeaderBoard extends AppCompatActivity {
         recyclerView.setLayoutManager(gridLayoutManager);
         resultList = new ArrayList<>();
         Map<String,String> mp=new HashMap<>();
-        String myMail="hi@hi.com";
+        playerData pd=playerData.getInstance(LeaderBoard.this);
+        String myMail=pd.getEmail();
         mp.put("mail",myMail);
         Call<LeaderBoardResponse> call = APIClient.Service().getLeaderBoard(mp);
         final int[] currRank = {new Random().nextInt(10)};
+        //FYI:: backend sends top 10 people and the your current rank in 11th position,if total no if <10 then it top people and your object again in last to know your exact rank
         call.enqueue(new Callback<LeaderBoardResponse>() {
             @Override
             public void onResponse(Call<LeaderBoardResponse> call, Response<LeaderBoardResponse> response) {

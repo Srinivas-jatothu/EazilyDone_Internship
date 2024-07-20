@@ -5,14 +5,18 @@ import android.animation.ValueAnimator;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.eazilydone.data.playerData;
 
 public class IntroActivity extends AppCompatActivity {
 
     private ProgressBar progressBar;
     private TextView loadingText;
+    boolean transistion = false;
     private String[] loadingMessages = {
             "Builds are being kept ready...",
             "Roads are being built...",
@@ -32,6 +36,15 @@ public class IntroActivity extends AppCompatActivity {
         animateText("Welcome to Eazily Done!");
 
         // Simulate loading process
+        playerData pd = playerData.getInstance(IntroActivity.this);
+        Log.d("TAG", "onCreate: from Intro " + pd.getEmail());
+        String temp= pd.getEmail();
+        if( temp != null && !temp.isEmpty()){
+            Intent intent = new Intent(IntroActivity.this, MainActivity.class);
+            transistion=true;
+            startActivity(intent);
+            finish();
+        }
         simulateLoading();
     }
 
@@ -42,7 +55,6 @@ public class IntroActivity extends AppCompatActivity {
             int totalSteps = 100; // total steps for ProgressBar
             long durationInMillis = 3000; // duration in milliseconds
             long delayBetweenSteps = durationInMillis / totalSteps; // calculate delay between each step
-
             @Override
             public void run() {
                 if (progress < totalSteps) {
@@ -56,13 +68,16 @@ public class IntroActivity extends AppCompatActivity {
                             loadingText.setText(loadingMessages[messageIndex]);
                         }
                     }
-
-                    handler.postDelayed(this, delayBetweenSteps);
+                    if(!transistion){
+                        handler.postDelayed(this, delayBetweenSteps);
+                    }
                 } else {
-                    loadingText.setText("Loading complete!");
-                    Intent intent = new Intent(IntroActivity.this, SigninActivity.class);
-                    startActivity(intent);
-                    finish();
+                    if(!transistion){
+                        loadingText.setText("Loading complete!");
+                        Intent intent = new Intent(IntroActivity.this, SigninActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }
                 }
             }
         };

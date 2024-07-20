@@ -11,6 +11,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.eazilydone.backend.APIClient;
+import com.example.eazilydone.data.playerData;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -59,6 +60,9 @@ public class SigninActivity extends AppCompatActivity{
                     public void onResponse(Call<Map<String, String>> call, Response<Map<String, String>> response) {
                         if(response.isSuccessful()){
                             Toast.makeText(SigninActivity.this, "signIn Successfull", Toast.LENGTH_SHORT).show();
+                            playerData pd=playerData.getInstance(SigninActivity.this);
+                            pd.setEmail(email);
+                            pd.saveData(SigninActivity.this);
                             Intent intent = new Intent(SigninActivity.this, MainActivity.class);
                             startActivity(intent);
                             finish();
