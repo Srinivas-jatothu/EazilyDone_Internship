@@ -101,13 +101,14 @@ public class chatBotActivity extends AppCompatActivity {
 
     protected void getBotResponse(String msg) {
         Map<String, String> mp = new HashMap<>();
-        mp.put("msg", msg);
+        mp.put("input", msg);
         Call<Map<String, String>> call = FlaskClient.Service().getBotResponse(mp);
         call.enqueue(new Callback<Map<String, String>>() {
             @Override
             public void onResponse(Call<Map<String, String>> call, Response<Map<String, String>> response) {
                 if (response.isSuccessful()) {
                     Map<String, String> map = response.body();
+                    Log.d("TAG1234", "onResponse: "+map);
                     chatAdapter.addMessage(new Message(map.get("msg"), Message.TYPE_BOT));
                     rv.smoothScrollToPosition(chatAdapter.getItemCount() - 1);
                     Log.d("TAG", "onResponse: " + map.get("msg"));

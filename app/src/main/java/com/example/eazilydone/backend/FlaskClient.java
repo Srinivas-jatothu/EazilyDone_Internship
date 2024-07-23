@@ -8,7 +8,7 @@ public class FlaskClient {
     private static Retrofit getRetrofit(){
         HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
         logging.setLevel(HttpLoggingInterceptor.Level.BODY);
-        String st= "https://intuitive-peace-production.up.railway.app/";
+        String st= "https://4000-01j3d742q16v6kx9btss3c2c9a.cloudspaces.litng.ai/";
         Retrofit r = new Retrofit.Builder()
                 .addConverterFactory(GsonConverterFactory.create())
                 .baseUrl(st)
