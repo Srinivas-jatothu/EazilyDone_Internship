@@ -21,6 +21,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.eazilydone.R;
 import com.example.eazilydone.backend.APIClient;
+import com.example.eazilydone.backend.FlaskClient;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -101,7 +102,7 @@ public class chatBotActivity extends AppCompatActivity {
     protected void getBotResponse(String msg) {
         Map<String, String> mp = new HashMap<>();
         mp.put("msg", msg);
-        Call<Map<String, String>> call = APIClient.Service().getBotResponse(mp);
+        Call<Map<String, String>> call = FlaskClient.Service().getBotResponse(mp);
         call.enqueue(new Callback<Map<String, String>>() {
             @Override
             public void onResponse(Call<Map<String, String>> call, Response<Map<String, String>> response) {
