@@ -21,7 +21,6 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-//TODO :: I just hard-cored the name as John, need to get the info playerData need to know and store it in the data flow.
 public class QuizActivity3 extends AppCompatActivity {
 
     private CashAmountManager cashAmountManager;
@@ -45,23 +44,15 @@ public class QuizActivity3 extends AppCompatActivity {
         // Add the cash amount to CashAmountManager
         cashAmountManager.setCashAmount(cashAmount);
         playerData pd= playerData.getInstance(QuizActivity3.this);
-//        Map<String,String> mp=new HashMap<>();
-//        mp.put("name","John");
-//        mp.put("email",pd.getEmail());
-//        mp.put("score",cashAmount);
-//        //current time in localDataTime format
-//        mp.put("timestamp",LocalDateTime.now());
-        Log.d("TAGFOR", "onCreate: "+pd.getEmail()+" "+cashAmount);
-        ScoreDTO scoreDTO = new ScoreDTO("John", pd.getEmail(), cashAmount);
+        Log.d("TAGFOR", "onCreate: "+pd.getName() + " "+ pd.getEmail()+" "+cashAmount);
+        ScoreDTO scoreDTO = new ScoreDTO(pd.getName(), pd.getEmail(), cashAmount);
         Log.d("TAG2", "onCreate: "+LocalDateTime.now());
         Call<Map<String, String>> call = APIClient.Service().addScore(scoreDTO);
         call.enqueue(new Callback<Map<String, String>>() {
             @Override
             public void onResponse(Call<Map<String, String>> call, Response<Map<String, String>> response) {
                 if(response.isSuccessful()){
-                    for(Map.Entry<String,String> entry:response.body().entrySet()){
-                        Log.d("Response",entry.getKey()+" "+entry.getValue());
-                    }
+                    Log.d("TESTING", "onResponse: "+response.body());
                     Toast.makeText(QuizActivity3.this, "Score added to leaderboard", Toast.LENGTH_SHORT).show();
                 }
                 else{

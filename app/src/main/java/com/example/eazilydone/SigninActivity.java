@@ -62,7 +62,9 @@ public class SigninActivity extends AppCompatActivity{
                             Toast.makeText(SigninActivity.this, "signIn Successfull", Toast.LENGTH_SHORT).show();
                             playerData pd=playerData.getInstance(SigninActivity.this);
                             pd.setEmail(email);
+                            pd.setName(response.body().get("name"));
                             pd.saveData(SigninActivity.this);
+                            Log.d("TAG2", "onResponse: "+response.body().get("name"));
                             Intent intent = new Intent(SigninActivity.this, MainActivity.class);
                             startActivity(intent);
                             finish();
@@ -102,6 +104,10 @@ public class SigninActivity extends AppCompatActivity{
                     public void onResponse(Call<Map<String, String>> call, Response<Map<String, String>> response) {
                         if(response.isSuccessful()){
                             Toast.makeText(SigninActivity.this, "SignUp successful", Toast.LENGTH_SHORT).show();
+                            playerData pd=playerData.getInstance(SigninActivity.this);
+                            pd.setEmail(email);
+                            pd.setName(name);
+                            pd.saveData(SigninActivity.this);
                             Intent intent = new Intent(SigninActivity.this, MainActivity.class);
                             startActivity(intent);
                             finish();

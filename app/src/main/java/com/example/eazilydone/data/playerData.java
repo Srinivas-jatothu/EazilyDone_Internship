@@ -10,11 +10,13 @@ public class playerData {
     private boolean firstDialogue;
     private int moneyAmount;
     private String email;
+    private String name;
     private playerData(){}
-    private playerData(boolean firstDialogue, int moneyAmount,String email) {
+    private playerData(boolean firstDialogue, int moneyAmount,String email,String name) {
         this.firstDialogue = firstDialogue;
         this.moneyAmount = moneyAmount;
         this.email=email;
+        this.name=name;
     }
     public static synchronized playerData getInstance(Context context) {
         if (instance == null) {
@@ -23,7 +25,8 @@ public class playerData {
             boolean firstDialogue = sharedPreferences.getBoolean("firstDialogue", false);
             int moneyAmount = sharedPreferences.getInt("moneyAmount", 0);
             String email = sharedPreferences.getString("email", "");
-            instance = new playerData(firstDialogue, moneyAmount,email);
+            String name = sharedPreferences.getString("name", "");
+            instance = new playerData(firstDialogue, moneyAmount,email,name);
         }
         return instance;
     }
@@ -34,7 +37,16 @@ public class playerData {
         editor.putBoolean("firstDialogue", firstDialogue);
         editor.putInt("moneyAmount", moneyAmount);
         editor.putString("email", email);
+        editor.putString("name", name);
         editor.apply();
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public boolean getfirstDialogue() {
