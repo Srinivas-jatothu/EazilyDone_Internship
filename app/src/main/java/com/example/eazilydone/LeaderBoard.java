@@ -1,5 +1,6 @@
 package com.example.eazilydone;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.Pair;
@@ -46,6 +47,17 @@ public class LeaderBoard extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        //exit button to go back to SecondActivity (Home Page) by INTENT
+
+        findViewById(R.id.exit).setOnClickListener(v -> {
+            Intent intent = new Intent(LeaderBoard.this, SecondActivity.class);
+            startActivity(intent);
+            finish();
+        });
+
+
+
         recyclerView = findViewById(R.id.recyclerView);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2);
         recyclerView.setLayoutManager(gridLayoutManager);

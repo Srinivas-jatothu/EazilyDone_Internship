@@ -87,7 +87,7 @@ public class TournamentActivity extends AppCompatActivity {
                 public void run() {
                     displayRule(index + 1);
                 }
-            }, 2000); // Adjust delay as needed (e.g., 2000 milliseconds = 2 seconds)
+            }, 500); // Adjust delay as needed (e.g., 2000 milliseconds = 2 seconds)
         } else {
             // All rules displayed, show the next button
             nextButton.setVisibility(View.VISIBLE);

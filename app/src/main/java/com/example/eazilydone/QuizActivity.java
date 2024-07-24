@@ -42,6 +42,7 @@ public class QuizActivity extends AppCompatActivity {
                 // Call QuizActivity2
                 Intent intent = new Intent(QuizActivity.this, QuizActivity2.class);
                 startActivity(intent);
+                finish();
                 break;
             default:
                 break;

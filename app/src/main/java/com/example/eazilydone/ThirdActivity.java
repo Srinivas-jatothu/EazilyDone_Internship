@@ -100,7 +100,6 @@ public class ThirdActivity extends AppCompatActivity {
                 //call CreateAccountActivity
                 Intent intent = new Intent(ThirdActivity.this, CreateAccountActivity.class);
                 startActivity(intent);
-                finish();
                 // Perform actions to start the account creation process
 
             }
