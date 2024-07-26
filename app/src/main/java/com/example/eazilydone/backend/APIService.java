@@ -19,4 +19,6 @@ public interface APIService {
     Call<Map<String,String>> addScore(@Body ScoreDTO req);
     @POST("/lb/getLeaderBoard")
     Call<LeaderBoardResponse> getLeaderBoard(@Body Map<String,String> req);
+    @POST("bank/create")
+    Call<Map<String, String>> createAccount(@Body Map<String, String> req);
 }

@@ -11,6 +11,15 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.eazilydone.backend.APIClient;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 
 public class SendtoDB extends AppCompatActivity {
 
@@ -57,7 +66,30 @@ public class SendtoDB extends AppCompatActivity {
         // Set up the PIN submission logic
         EditText pinEditText = findViewById(R.id.pinEditText);
         Button submitPinButton = findViewById(R.id.submitPinButton);
+        Map<String,String> mp=new HashMap<>();
+        mp.put("name",name);
+        mp.put("phone",phone);
+        mp.put("countryCode",countryCode);
+        mp.put("mail",email);
+        mp.put("deposit",deposit);
+        mp.put("accType",accounttype);
+        Call<Map<String,String>> call= APIClient.Service().createAccount(mp);
+        call.enqueue(new Callback<Map<String, String>>() {
+            @Override
+            public void onResponse(Call<Map<String, String>> call, Response<Map<String, String>> response) {
+                if(response.isSuccessful()){
+                    Toast.makeText(SendtoDB.this, "Account Created Successfully", Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    Toast.makeText(SendtoDB.this, "Account Creation Failed", Toast.LENGTH_SHORT).show();
+                }
+            }
 
+            @Override
+            public void onFailure(Call<Map<String, String>> call, Throwable t) {
+
+            }
+        });
         submitPinButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -68,7 +100,6 @@ public class SendtoDB extends AppCompatActivity {
                 } else {
                     Toast.makeText(SendtoDB.this, "Please enter a valid 4-digit PIN", Toast.LENGTH_SHORT).show();
                 }
-
                 //call new activity
                 Intent intent = new Intent(SendtoDB.this, SecondActivity.class);
                 startActivity(intent);
