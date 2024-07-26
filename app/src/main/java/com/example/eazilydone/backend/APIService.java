@@ -21,4 +21,6 @@ public interface APIService {
     Call<LeaderBoardResponse> getLeaderBoard(@Body Map<String,String> req);
     @POST("bank/create")
     Call<Map<String, String>> createAccount(@Body Map<String, String> req);
+    @POST("bank/get")
+    Call<Map<String, String>> getAccountDetails(@Body Map<String, String> req);
 }

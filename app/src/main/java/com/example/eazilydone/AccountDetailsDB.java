@@ -94,6 +94,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.eazilydone.backend.APIClient;
+import com.google.gson.Gson;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -170,7 +171,35 @@ public class AccountDetailsDB extends AppCompatActivity {
 //        accountTypeTextView.setText("Account Type: " + accounttype);
         pinTextView.setText("PIN: " + pin);
         accountNumberTextView.setText("Account Number: " + accountNumber);
+        Map<String,String>mp=new HashMap<>();
+        mp.put("name",name);
+        mp.put("accNo",accountNumber);
+        mp.put("pin",pin);
+        Log.d("AccountDetailsDB", "Request Body: " + new Gson().toJson(mp));
+        Call<Map<String,String>> call = APIClient.Service().getAccountDetails(mp);
+        call.enqueue(new Callback<Map<String, String>>() {
+            @Override
+            public void onResponse(Call<Map<String, String>> call, Response<Map<String, String>> response) {
+                Map<String,String> res=response.body();
+                Log.d("AccountDetailsDB", ""+res);
+                if(response.isSuccessful()){
+                    Log.d("AccountDetailsDB", "Successfully got account details");
+                    Log.d("AccountDetailsDB", "Account Details: " + res);
+                    //name=name, phone=1234, email=email@hi.com, deposit=100.0, accountType=saving, accountNo=1, pin=1234, countryCode=+91
+                    // TODO:: these are variables that are being returned
+                    // to use them use res.get("name") to get the name and similar checkout
+                    Toast.makeText(AccountDetailsDB.this, "Successfully got account details", Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    Log.d("AccountDetailsDB", "Failed to get account details");
+                    Toast.makeText(AccountDetailsDB.this, "Failed to get account details", Toast.LENGTH_SHORT).show();
+                }
+            }
+            @Override
+            public void onFailure(Call<Map<String, String>> call, Throwable t) {
 
+            }
+        });
 
         // Set up the PIN submission logic
 //        EditText pinEditText = findViewById(R.id.pinEditText);
