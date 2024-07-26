@@ -24,7 +24,7 @@ import java.util.Locale;
 
 public class PremiumAccountFragment extends Fragment {
 
-    private EditText accountHolderName, phoneNumber, email, initialDeposit;
+    private EditText accountHolderName, phoneNumber, email, initialDeposit, pin;
     private Spinner countryCodeSpinner;
     private Button submitButton;
     private CheckBox agreementCheckbox;
@@ -43,6 +43,7 @@ public class PremiumAccountFragment extends Fragment {
         phoneNumber = rootView.findViewById(R.id.phoneNumber);
         email = rootView.findViewById(R.id.email);
         initialDeposit = rootView.findViewById(R.id.initialDeposit);
+        pin = rootView.findViewById(R.id.pin);
         countryCodeSpinner = rootView.findViewById(R.id.countryCodeSpinner);
         submitButton = rootView.findViewById(R.id.submitButton);
         agreementCheckbox = rootView.findViewById(R.id.agreementCheckbox);
@@ -71,6 +72,7 @@ public class PremiumAccountFragment extends Fragment {
         String phone = phoneNumber.getText().toString();
         String emailText = email.getText().toString();
         String deposit = initialDeposit.getText().toString();
+        String pinnumber = pin.getText().toString();
         String countryCode = countryCodeSpinner.getSelectedItem().toString();
 
         // Get the current date and time
@@ -83,6 +85,7 @@ public class PremiumAccountFragment extends Fragment {
         Log.d("PremiumAccountFragment", "Initial Deposit: " + deposit);
         Log.d("PremiumAccountFragment", "Country Code: " + countryCode);
         Log.d("PremiumAccountFragment", "Date and Time: " + currentDateAndTime);
+        Log.d("PremiumAccountFragment", "PIN: " + pinnumber);
 
         if (Integer.parseInt(deposit) > CashAmountManager.getInstance().getCashAmount()) {
             Toast.makeText(requireContext(), "Insufficient balance", Toast.LENGTH_SHORT).show();
@@ -112,6 +115,12 @@ public class PremiumAccountFragment extends Fragment {
             return;
         }
 
+        // Validate PIN: exactly 4 digits
+        if (!pinnumber.matches("\\d{4}")) {
+            Toast.makeText(requireContext(), "PIN should be exactly 4 digits", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         // Validate email: should contain @
         if (!emailText.contains("@")) {
             Toast.makeText(requireContext(), "Invalid email address", Toast.LENGTH_SHORT).show();
@@ -126,7 +135,7 @@ public class PremiumAccountFragment extends Fragment {
 
         // Calculate the deposit amount with 15% interest for each year
         int years = 1; // Assuming interest is calculated for one year. Modify as needed.
-        double depositWithInterest = calculateInterest(Integer.parseInt(deposit), years);
+        //double depositWithInterest = calculateInterest(Integer.parseInt(deposit), years);
 
         // Log saying form submitted successfully
         Log.d("PremiumAccountFragment", "Form submitted successfully");
@@ -139,19 +148,20 @@ public class PremiumAccountFragment extends Fragment {
         intent.putExtra("name", name);
         intent.putExtra("phone", phone);
         intent.putExtra("email", emailText);
-        intent.putExtra("deposit", String.valueOf(depositWithInterest));
+        intent.putExtra("deposit", deposit);
         intent.putExtra("countryCode", countryCode);
         intent.putExtra("dateAndTime", currentDateAndTime);
+        intent.putExtra("pin", pinnumber);
         intent.putExtra("accountType", "Premium Current Account");
         startActivity(intent);
     }
 
     // Method to calculate the deposit amount with 15% interest for each year
-    private double calculateInterest(int deposit, int years) {
-        double interestRate = 0.15;
-        // Formula to calculate compound interest: A = P(1 + r)^n
-        return deposit * Math.pow(1 + interestRate, years);
-    }
+//    private double calculateInterest(int deposit, int years) {
+//        double interestRate = 0.15;
+//        // Formula to calculate compound interest: A = P(1 + r)^n
+//        return deposit * Math.pow(1 + interestRate, years);
+//    }
 
     // Method to update cash amount in cash_amount_view.xml
     private void updateCashAmount() {

@@ -54,6 +54,7 @@ public class StandardCurrentAccount extends AppCompatActivity {
         String emailText = email.getText().toString();
         String deposit = initialDeposit.getText().toString();
         String countryCode = countryCodeSpinner.getSelectedItem().toString();
+        String accounttype = "Standard Current Account";
 
         // Perform validation and submission logic here
         if (name.isEmpty() || phone.isEmpty() || emailText.isEmpty() || deposit.isEmpty()) {

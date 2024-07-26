@@ -144,6 +144,7 @@ public class StandardCurrentAccountFragment extends Fragment {
         intent.putExtra("deposit", deposit);
         intent.putExtra("countryCode", countryCode);
         intent.putExtra("dateAndTime", currentDateAndTime);
+        intent.putExtra("accounttype", "Standard Current Account");
         startActivity(intent);
     }
 

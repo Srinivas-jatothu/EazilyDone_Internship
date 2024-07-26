@@ -105,62 +105,53 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginBottom="8dp"/>
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.cardview.widget.CardView>
-
-    <!-- PIN Entry Box -->
-    <androidx.cardview.widget.CardView
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:cardElevation="8dp"
-        app:layout_constraintTop_toBottomOf="@id/summaryCardView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_margin="16dp"
-        app:layout_constraintVertical_bias="0.2">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="16dp">
-
             <TextView
-                android:id="@+id/pinPromptTextView"
-                android:layout_width="wrap_content"
+                android:id="@+id/pinnumberTextView"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="Enter 4-digit PIN:"
+                android:text="Pin Number: "
+                android:textStyle="bold"
                 android:textSize="18sp"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/accountTypeTextView"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginBottom="8dp"/>
 
-            <EditText
-                android:id="@+id/pinEditText"
+            <TextView
+                android:id="@+id/accountDetailsTextView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:inputType="number"
-                android:maxLength="4"
-                android:hint="PIN"
-                android:textAlignment="center"
-                android:padding="8dp"
+                android:text="Account Number: "
+                android:textStyle="bold"
                 android:textSize="18sp"
-                app:layout_constraintTop_toBottomOf="@id/pinPromptTextView"
+                app:layout_constraintTop_toBottomOf="@id/pinnumberTextView"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginBottom="16dp"/>
+                android:layout_marginBottom="8dp"/>
 
-            <Button
-                android:id="@+id/submitPinButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Submit"
-                android:padding="8dp"
-                android:textSize="18sp"
-                app:layout_constraintTop_toBottomOf="@id/pinEditText"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"/>
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
+
+
+
+
+    <Button
+        android:id="@+id/exitButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Exit"
+        app:layout_constraintTop_toBottomOf="@id/summaryCardView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"/>
+
+
+
+
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

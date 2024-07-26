@@ -23,6 +23,7 @@ import retrofit2.Response;
 
 public class SendtoDB extends AppCompatActivity {
 
+    private Button exitButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +38,18 @@ public class SendtoDB extends AppCompatActivity {
         String countryCode = intent.getStringExtra("countryCode");
         String dateTime = getIntent().getStringExtra("dateAndTime");
         String accounttype = getIntent().getStringExtra("accountType");
+        String pin = getIntent().getStringExtra("pin");
+
+        //exit button
+        Button exitButton = findViewById(R.id.exitButton);
+        exitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SendtoDB.this, ThirdActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
 
         // Log the received values
         Log.d("SendtoDB", "Received Name: " + name);
@@ -44,6 +57,7 @@ public class SendtoDB extends AppCompatActivity {
         Log.d("SendtoDB", "Received Email: " + email);
         Log.d("SendtoDB", "Received Deposit: " + deposit);
         Log.d("SendtoDB", "Received Country Code: " + countryCode);
+        Log.d("SendtoDB", "PIN: " + pin);
         Log.d("SendtoDB", "Received Date and Time: " + dateTime);
 
         // Set the values to TextViews
@@ -54,6 +68,8 @@ public class SendtoDB extends AppCompatActivity {
         TextView countryCodeTextView = findViewById(R.id.countryCodeTextView);
         TextView dateTimeTextView = findViewById(R.id.dateTimeTextView);
         TextView accountTypeTextView = findViewById(R.id.accountTypeTextView);
+        TextView pinTextView = findViewById(R.id.pinnumberTextView);
+
 
         nameTextView.setText("Name: " + name);
         phoneTextView.setText("Phone: " + phone);
@@ -62,10 +78,11 @@ public class SendtoDB extends AppCompatActivity {
         countryCodeTextView.setText("Country Code: " + countryCode);
         dateTimeTextView.setText("Date and Time: " + dateTime);
         accountTypeTextView.setText("Account Type: " + accounttype);
+        pinTextView.setText("PIN: " + pin);
 
         // Set up the PIN submission logic
-        EditText pinEditText = findViewById(R.id.pinEditText);
-        Button submitPinButton = findViewById(R.id.submitPinButton);
+//        EditText pinEditText = findViewById(R.id.pinEditText);
+//        Button submitPinButton = findViewById(R.id.submitPinButton);
         Map<String,String> mp=new HashMap<>();
         mp.put("name",name);
         mp.put("phone",phone);
@@ -77,6 +94,7 @@ public class SendtoDB extends AppCompatActivity {
         call.enqueue(new Callback<Map<String, String>>() {
             @Override
             public void onResponse(Call<Map<String, String>> call, Response<Map<String, String>> response) {
+                Log.d("TAG", "onResponse: "+response.body());
                 if(response.isSuccessful()){
                     Toast.makeText(SendtoDB.this, "Account Created Successfully", Toast.LENGTH_SHORT).show();
                 }
@@ -90,22 +108,22 @@ public class SendtoDB extends AppCompatActivity {
 
             }
         });
-        submitPinButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String pin = pinEditText.getText().toString();
-
-                if (pin.length() == 4 && pin.matches("\\d+")) {
-                    Toast.makeText(SendtoDB.this, "PIN has been generated: " + pin, Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(SendtoDB.this, "Please enter a valid 4-digit PIN", Toast.LENGTH_SHORT).show();
-                }
-                //call new activity
-                Intent intent = new Intent(SendtoDB.this, SecondActivity.class);
-                startActivity(intent);
-                finish();
-            }
-        });
+//        submitPinButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                String pin = pinEditText.getText().toString();
+//
+//                if (pin.length() == 4 && pin.matches("\\d+")) {
+//                    Toast.makeText(SendtoDB.this, "PIN has been generated: " + pin, Toast.LENGTH_SHORT).show();
+//                } else {
+//                    Toast.makeText(SendtoDB.this, "Please enter a valid 4-digit PIN", Toast.LENGTH_SHORT).show();
+//                }
+//                //call new activity
+//                Intent intent = new Intent(SendtoDB.this, SecondActivity.class);
+//                startActivity(intent);
+//                finish();
+//            }
+//        });
     }
 
 

@@ -18,8 +18,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toTopOf="parent"
-            />
+            app:layout_constraintBottom_toTopOf="parent" />
 
         <!-- Account Holder Name -->
         <TextView
@@ -104,7 +103,6 @@
             app:layout_constraintTop_toBottomOf="@+id/emailLabel"
             app:layout_constraintWidth_percent="1.0" />
 
-
         <!-- Initial Deposit Amount -->
         <TextView
             android:id="@+id/initialDepositLabel"
@@ -129,6 +127,31 @@
             app:layout_constraintTop_toBottomOf="@+id/initialDepositLabel"
             app:layout_constraintWidth_percent="1.0" />
 
+        <!-- PIN Section -->
+        <TextView
+            android:id="@+id/pinLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="4-Digit PIN"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/initialDeposit" />
+
+        <EditText
+            android:id="@+id/pin"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:hint="Enter 4-digit PIN"
+            android:inputType="numberPassword"
+            android:maxLength="4"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/pinLabel"
+            app:layout_constraintWidth_percent="1.0" />
+
         <CheckBox
             android:id="@+id/agreementCheckbox"
             android:layout_width="wrap_content"
@@ -136,7 +159,7 @@
             android:layout_marginTop="16dp"
             android:text="I agree to the terms and conditions"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/initialDeposit" />
+            app:layout_constraintTop_toBottomOf="@id/pin" />
 
         <!-- Disclaimer Text -->
         <TextView
