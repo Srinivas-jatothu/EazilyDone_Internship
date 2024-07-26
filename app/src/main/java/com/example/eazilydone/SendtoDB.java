@@ -23,6 +23,7 @@ import retrofit2.Response;
 
 public class SendtoDB extends AppCompatActivity {
 
+
     private Button exitButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +61,7 @@ public class SendtoDB extends AppCompatActivity {
         Log.d("SendtoDB", "PIN: " + pin);
         Log.d("SendtoDB", "Received Date and Time: " + dateTime);
 
-        // Set the values to TextViews
+        // Set the values to TextViews in the layout
         TextView nameTextView = findViewById(R.id.nameTextView);
         TextView phoneTextView = findViewById(R.id.phoneTextView);
         TextView emailTextView = findViewById(R.id.emailTextView);
@@ -71,6 +72,8 @@ public class SendtoDB extends AppCompatActivity {
         TextView pinTextView = findViewById(R.id.pinnumberTextView);
 
 
+
+//the below code is to set the values to the textviews in the activity_sendto_db.xml
         nameTextView.setText("Name: " + name);
         phoneTextView.setText("Phone: " + phone);
         emailTextView.setText("Email: " + email);

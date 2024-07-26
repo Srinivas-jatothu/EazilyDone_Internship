@@ -21,7 +21,7 @@
             android:screenOrientation="landscape"
             tools:ignore="DiscouragedApi"/>
         <activity
-            android:name=".SecondActivity"
+            android:name=".ThirdActivity"
             android:exported="true"
             android:screenOrientation="landscape"
             tools:ignore="DiscouragedApi">
@@ -43,7 +43,7 @@
             android:screenOrientation="landscape"
             tools:ignore="DiscouragedApi"/>
         <activity
-            android:name=".ThirdActivity"
+            android:name=".SecondActivity"
             android:exported="false"
             android:screenOrientation="landscape"
             tools:ignore="DiscouragedApi"/>
@@ -142,6 +142,12 @@
             android:exported="false"
             android:screenOrientation="landscape"
             tools:ignore="DiscouragedApi"/>
+
+        <activity android:name=".AccountDetailsDB"
+            android:exported="false"
+            android:screenOrientation="landscape"
+            tools:ignore="DiscouragedApi"/>
+
 
     </application>
 
