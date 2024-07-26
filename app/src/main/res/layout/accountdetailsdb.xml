@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AccountDetailsDB">
+    tools:context=".SendtoDB">
 
     <!-- Summary Box -->
     <androidx.cardview.widget.CardView
@@ -23,7 +23,7 @@
             android:padding="16dp">
 
             <TextView
-                android:id="@+id/nameTextView1"
+                android:id="@+id/nameTextView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="Name: "
@@ -35,26 +35,41 @@
                 android:layout_marginBottom="8dp"/>
 
 
+
             <TextView
-                android:id="@+id/pinnumberTextView1"
+                android:id="@+id/depositTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Deposit: "
+                android:textStyle="bold"
+                android:textSize="18sp"
+                app:layout_constraintTop_toBottomOf="@id/nameTextView"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginBottom="8dp"/>
+
+
+
+            <TextView
+                android:id="@+id/pinnumberTextView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="Pin Number: "
                 android:textStyle="bold"
                 android:textSize="18sp"
-                app:layout_constraintTop_toBottomOf="@id/nameTextView1"
+                app:layout_constraintTop_toBottomOf="@id/depositTextView"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginBottom="8dp"/>
 
             <TextView
-                android:id="@+id/accountDetailsTextView1"
+                android:id="@+id/accountDetailsTextView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="Account Number: "
                 android:textStyle="bold"
                 android:textSize="18sp"
-                app:layout_constraintTop_toBottomOf="@id/pinnumberTextView1"
+                app:layout_constraintTop_toBottomOf="@id/pinnumberTextView"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginBottom="8dp"/>
