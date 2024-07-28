@@ -118,7 +118,7 @@
                 android:layout_marginBottom="8dp"/>
 
             <TextView
-                android:id="@+id/accountDetailsTextView"
+                android:id="@+id/accountnumberTextView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="Account Number: "
