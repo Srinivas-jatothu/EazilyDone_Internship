@@ -6,6 +6,15 @@
     android:background="@color/light_orange"
     android:padding="16dp">
 
+    <include
+        android:id="@+id/cashBoxInclude"
+        layout="@layout/cash_amount_view"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="parent"
+        />
+
     <!-- Deposit Amount Title -->
     <TextView
         android:id="@+id/tvDepositTitle"
@@ -91,6 +100,27 @@
                 android:hint="Enter deposit amount"
                 android:padding="12dp"
                 android:inputType="numberDecimal"
+                android:layout_marginTop="8dp" />
+
+
+            <!-- PIN Input -->
+            <TextView
+                android:id="@+id/tvPinLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="4-Digit PIN"
+                android:textSize="16sp"
+                android:textColor="@android:color/black"
+                android:layout_marginTop="16dp" />
+
+            <EditText
+                android:id="@+id/etPin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Enter your 4-digit PIN"
+                android:padding="12dp"
+                android:inputType="numberPassword"
+                android:maxLength="4"
                 android:layout_marginTop="8dp" />
 
             <!-- Checkbox and Warning Message -->
