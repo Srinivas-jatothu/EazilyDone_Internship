@@ -19,17 +19,24 @@ public class ThirdActivity extends AppCompatActivity {
     private View createAccountLayout;
     private Button closeCreateAccountLayoutButton;
     private Button clickToCreateAccountButton;
+    private TextView cashAmountTextView; // Declare cashAmountTextView as a class member
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_third);
 
+
+        // Initialize CashAmountManager (if not already initialized)
+        CashAmountManager.getInstance();
+
         buttonsContainer = findViewById(R.id.buttonsContainer);
         createAccountLayout = findViewById(R.id.createAccountLayout);
         closeCreateAccountLayoutButton = findViewById(R.id.closeCreateAccountLayoutButton);
         clickToCreateAccountButton = findViewById(R.id.clickToCreateAccountButton);
 
+        cashAmountTextView = findViewById(R.id.cashAmount);
         Button accountDetailsButton = findViewById(R.id.accountDetailsButton);
         Button createAccountButton = findViewById(R.id.createAccountButton);
         Button depositButton = findViewById(R.id.depositButton);
@@ -139,5 +146,22 @@ public class ThirdActivity extends AppCompatActivity {
 
         textView.setText(Html.fromHtml(text));
 
+        // Update cash amount initially
+        updateCashAmount();
+
+    }
+
+    // Method to update cash amount in cash_amount_view.xml TextView
+    private void updateCashAmount() {
+        if (cashAmountTextView != null) {
+            cashAmountTextView.setText(String.valueOf(CashAmountManager.getInstance().getCashAmount()));
+        }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        // Update cash amount when returning to DepositActivity
+        updateCashAmount();
     }
 }

@@ -178,6 +178,8 @@ import retrofit2.Response;
 public class SendtoDB extends AppCompatActivity {
 
     private Button exitButton;
+    private TextView cashAmountTextView; // Declare cashAmountTextView as a class member
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -7,6 +7,15 @@
     android:background="@drawable/cust_emp_bg"
     android:padding="16dp">
 
+    <include
+        android:id="@+id/cashBoxInclude"
+        layout="@layout/cash_amount_view"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="parent"
+        />
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/buttonsContainer"
         android:layout_width="731dp"

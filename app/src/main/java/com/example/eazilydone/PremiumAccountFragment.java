@@ -75,6 +75,8 @@ public class PremiumAccountFragment extends Fragment {
         String pinnumber = pin.getText().toString();
         String countryCode = countryCodeSpinner.getSelectedItem().toString();
 
+
+
         // Get the current date and time
         String currentDateAndTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault()).format(new Date());
 
@@ -86,6 +88,8 @@ public class PremiumAccountFragment extends Fragment {
         Log.d("PremiumAccountFragment", "Country Code: " + countryCode);
         Log.d("PremiumAccountFragment", "Date and Time: " + currentDateAndTime);
         Log.d("PremiumAccountFragment", "PIN: " + pinnumber);
+
+
 
         if (Integer.parseInt(deposit) > CashAmountManager.getInstance().getCashAmount()) {
             Toast.makeText(requireContext(), "Insufficient balance", Toast.LENGTH_SHORT).show();
@@ -133,15 +137,14 @@ public class PremiumAccountFragment extends Fragment {
             return;
         }
 
-        // Calculate the deposit amount with 15% interest for each year
-        int years = 1; // Assuming interest is calculated for one year. Modify as needed.
-        //double depositWithInterest = calculateInterest(Integer.parseInt(deposit), years);
-
         // Log saying form submitted successfully
         Log.d("PremiumAccountFragment", "Form submitted successfully");
 
         // Show a success message
         Toast.makeText(requireContext(), "Form submitted successfully", Toast.LENGTH_SHORT).show();
+
+        //remove he deposit amount from the cash amount
+        CashAmountManager.getInstance().subtractCashAmount(Integer.parseInt(deposit));
 
         // Start SendtoDB activity and send user details
         Intent intent = new Intent(getActivity(), SendtoDB.class);
@@ -156,12 +159,7 @@ public class PremiumAccountFragment extends Fragment {
         startActivity(intent);
     }
 
-    // Method to calculate the deposit amount with 15% interest for each year
-//    private double calculateInterest(int deposit, int years) {
-//        double interestRate = 0.15;
-//        // Formula to calculate compound interest: A = P(1 + r)^n
-//        return deposit * Math.pow(1 + interestRate, years);
-//    }
+
 
     // Method to update cash amount in cash_amount_view.xml
     private void updateCashAmount() {

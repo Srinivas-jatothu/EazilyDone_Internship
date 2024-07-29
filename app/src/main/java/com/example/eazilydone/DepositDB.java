@@ -83,7 +83,7 @@ public class DepositDB extends AppCompatActivity {
                     String accountType = res.get("accountType");
                     String apiDeposit = res.get("deposit");
                     //store date
-                    String date = "2021-09-01";
+                    String date = res.get("time");
 
                     Log.d("DepositDB", "Account Type: " + accountType);
                     Log.d("DepositDB", "Deposit from API: " + apiDeposit);
@@ -125,6 +125,14 @@ public class DepositDB extends AppCompatActivity {
 
 
     private double calculateDeposit(double receivedDeposit, double apiDeposit, String accountType, String date) {
+
+        //log date
+        Log.d("DepositDB", "Received Date and Time: " + date);
+        // store only date
+        date = date.split("T")[0];
+
+        //log the date
+        Log.d("DepositDB", "Received Date: " + date);
         // Retrieve the local date and time from the local device
         LocalDateTime now = LocalDateTime.now();
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");

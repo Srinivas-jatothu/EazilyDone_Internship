@@ -212,6 +212,12 @@ public class DepositActivity extends AppCompatActivity {
             Toast.makeText(this, "Please agree to the terms", Toast.LENGTH_SHORT).show();
             return false;
         }
+
+        String amount = etAmount.getText().toString().trim();
+        // Subtract the deposit amount from the cash amount in CashAmountManager class
+        CashAmountManager.getInstance().subtractCashAmount(Integer.parseInt(amount));
+        Log.d("DepositActivity", "Cash Amount after deposit: " + CashAmountManager.getInstance().getCashAmount());
+
         return true;
     }
 
@@ -222,6 +228,7 @@ public class DepositActivity extends AppCompatActivity {
 
         // Subtract the deposit amount from the cash amount in CashAmountManager class
         CashAmountManager.getInstance().subtractCashAmount(Integer.parseInt(amount));
+        Log.d("DepositActivity", "Cash Amount after deposit: " );
 
         detailsLayout.setVisibility(View.VISIBLE);
 
