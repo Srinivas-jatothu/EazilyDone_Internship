@@ -1,5 +1,6 @@
 package com.example.eazilydone;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -45,6 +46,7 @@ public class WithDraw extends AppCompatActivity {
         tvDisplayAccountNumber = findViewById(R.id.tvDisplayAccountNumber);
         tvDisplayPin = findViewById(R.id.tvDisplayPin);
         tvDisplayAmount = findViewById(R.id.tvDisplayAmount);
+        cashAmountTextView = findViewById(R.id.cashAmount);
 
         // Set up the submit button click listener
         btnSubmit.setOnClickListener(new View.OnClickListener() {
@@ -54,6 +56,7 @@ public class WithDraw extends AppCompatActivity {
             }
         });
 
+        updateCashAmount();
     }
 
     private void submitForm() {
@@ -63,26 +66,30 @@ public class WithDraw extends AppCompatActivity {
         String amountStr = etAmount.getText().toString().trim();  // Withdrawal amount
 
         if (validateInputs(name, accountNumber, pin, amountStr)) {
-            // Display the details
-            tvDisplayName.setText("Name: " + name);
-            tvDisplayAccountNumber.setText("Account Number: " + accountNumber);
-            tvDisplayPin.setText("PIN: " + pin);
-            tvDisplayAmount.setText("Withdraw Amount: " + amountStr);
+//            // Display the details
+//            tvDisplayName.setText("Name: " + name);
+//            tvDisplayAccountNumber.setText("Account Number: " + accountNumber);
+//            tvDisplayPin.setText("PIN: " + pin);
+//            tvDisplayAmount.setText("Withdraw Amount: " + amountStr);
+//
+//            // Show the details layout
+//            detailsLayout.setVisibility(View.VISIBLE);
+//
+//            // Clear the input fields
+//            etName.setText("");
+//            etAccountNumber.setText("");
+//            etPin.setText("");
+//            etAmount.setText("");
+//            checkBox.setChecked(false);
 
-            // Show the details layout
-            detailsLayout.setVisibility(View.VISIBLE);
+            //send the infomration to WithDrawDB activity
+            Intent intent = new Intent(WithDraw.this, WithDrawDB.class);
+            intent.putExtra("name", name);
+            intent.putExtra("accountNumber", accountNumber);
+            intent.putExtra("pin", pin);
+            intent.putExtra("amount", amountStr);
+            startActivity(intent);
 
-            // Clear the input fields
-            etName.setText("");
-            etAccountNumber.setText("");
-            etPin.setText("");
-            etAmount.setText("");
-            checkBox.setChecked(false);
-
-            // Update the cash amount after withdrawal by adding this withdrawal amount to the CashAmountManager
-            double amount = Integer.parseInt(amountStr);
-            cashAmountManager.setCashAmount(amount);
-            updateCashAmount();
 
         }
     }
@@ -113,6 +120,8 @@ public class WithDraw extends AppCompatActivity {
             Toast.makeText(this, "Please agree to the notice", Toast.LENGTH_SHORT).show();
             return false;
         }
+
+
         return true;
     }
     // Method to update cash amount in cash_amount_view.xml

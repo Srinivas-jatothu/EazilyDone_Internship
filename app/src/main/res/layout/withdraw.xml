@@ -6,6 +6,15 @@
     android:background="@color/light_orange"
     android:padding="16dp">
 
+    <include
+        android:id="@+id/cashBoxInclude"
+        layout="@layout/cash_amount_view"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="parent"
+        />
+
     <!-- Welcome Message -->
     <TextView
         android:id="@+id/tvWelcomeMessage"
@@ -150,57 +159,6 @@
         </LinearLayout>
     </ScrollView>
 
-    <!-- Display Details Layout -->
-    <LinearLayout
-        android:id="@+id/detailsLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:visibility="gone"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="24dp">
 
-        <!-- Name Display -->
-        <TextView
-            android:id="@+id/tvDisplayName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Name: [User Name]"
-            android:textSize="18sp"
-            android:textColor="@android:color/black"
-            android:layout_marginTop="16dp" />
-
-        <!-- Account Number Display -->
-        <TextView
-            android:id="@+id/tvDisplayAccountNumber"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Account Number: [Account Number]"
-            android:textSize="18sp"
-            android:textColor="@android:color/black"
-            android:layout_marginTop="16dp" />
-
-        <!-- WithDraw Amount Display -->
-        <TextView
-            android:id="@+id/tvDisplayAmount"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="WithDraw Amount: [WithDraw Amount]"
-            android:textSize="18sp"
-            android:textColor="@android:color/black"
-            android:layout_marginTop="16dp" />
-
-        <!-- PIN Display -->
-        <TextView
-            android:id="@+id/tvDisplayPin"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="PIN: [PIN]"
-            android:textSize="18sp"
-            android:textColor="@android:color/black"
-            android:layout_marginTop="16dp" />
-    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

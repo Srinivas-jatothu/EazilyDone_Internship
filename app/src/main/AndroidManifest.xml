@@ -43,7 +43,7 @@
             android:screenOrientation="landscape"
             tools:ignore="DiscouragedApi"/>
         <activity
-            android:name=".SecondActivity"
+            android:name=".IntroActivity"
             android:exported="false"
             android:screenOrientation="landscape"
             tools:ignore="DiscouragedApi"/>
@@ -78,7 +78,7 @@
             android:screenOrientation="landscape"
             tools:ignore="DiscouragedApi"/>
         <activity
-            android:name=".IntroActivity"
+            android:name=".SecondActivity"
             android:exported="false"
             android:screenOrientation="landscape"
             tools:ignore="DiscouragedApi"/>
@@ -149,6 +149,11 @@
             tools:ignore="DiscouragedApi"/>
 
         <activity android:name=".DepositDB"
+            android:exported="false"
+            android:screenOrientation="landscape"
+            tools:ignore="DiscouragedApi"/>
+
+        <activity android:name=".WithDrawDB"
             android:exported="false"
             android:screenOrientation="landscape"
             tools:ignore="DiscouragedApi"/>
